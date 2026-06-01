@@ -189,7 +189,8 @@
 
 <nav>
   <a href="index.html" class="logo">Inferis Tech</a>
-  <ul class="nav-links">
+  <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  <ul class="nav-links" id="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="services.html">Services</a></li>
     <li><a href="work.html">Work</a></li>
@@ -351,5 +352,11 @@
   <div class="footer-copy">© 2026 Inferis Tech. All rights reserved.</div>
 </footer>
 
+<script>
+function toggleNav() {
+  document.getElementById("hamburger").classList.toggle("open");
+  document.getElementById("nav-links").classList.toggle("open");
+}
+</script>
 </body>
 </html>
