@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — Inferis Tech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+      align-items: start;
+    }
+
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      transition: transform 0.3s;
+      position: relative;
+    }
+
+    .pricing-card:hover { transform: translateY(-4px); }
+
+    .pricing-card.featured {
+      background: linear-gradient(145deg, rgba(0,255,180,0.06), rgba(252,92,138,0.06));
+      border-color: rgba(74,222,128,0.25);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -14px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--grad1);
+      color: #fff;
+      padding: 0.3rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      font-family: var(--font-head);
+    }
+
+    .plan-name {
+      font-family: var(--font-head);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .plan-price {
+      font-family: var(--font-head);
+      font-size: 3.2rem;
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .plan-period {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      font-weight: 300;
+    }
+
+    .plan-tagline {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-weight: 300;
+      line-height: 1.5;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .plan-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.87rem;
+      color: var(--muted);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-weight: 300;
+      line-height: 1.4;
+    }
+
+    .plan-features li:last-child { border-bottom: none; }
+    .check { color: #4ade80; font-size: 0.85rem; margin-top: 1px; flex-shrink: 0; }
+    .dash { color: rgba(255,255,255,0.2); font-size: 0.85rem; margin-top: 1px; flex-shrink: 0; }
+
+    .plan-btn {
+      display: block;
+      text-align: center;
+      padding: 0.9rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+      font-family: var(--font-head);
+      letter-spacing: 0.3px;
+    }
+
+    .plan-btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .plan-btn-outline:hover { border-color: rgba(255,255,255,0.25); transform: translateY(-1px); }
+
+    .plan-btn-fill {
+      background: var(--grad1);
+      color: #fff;
+    }
+
+    .plan-btn-fill:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 3rem;
+      font-size: 0.88rem;
+    }
+
+    .compare-table th {
+      font-family: var(--font-head);
+      font-weight: 600;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .compare-table th:not(:first-child) { text-align: center; }
+
+    .compare-table td {
+      padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .compare-table td:not(:first-child) { text-align: center; }
+
+    .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .yes { color: #4ade80; font-weight: 600; }
+    .no  { color: rgba(255,255,255,0.2); }
+
+    .col-highlight { color: var(--text); font-weight: 500; }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem;
+    }
+
+    .faq-q {
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+
+    .faq-a {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .add-ons-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .addon-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    .addon-card:hover { border-color: rgba(74,222,128,0.25); }
+
+    .addon-icon { font-size: 2rem; margin-bottom: 0.7rem; }
+
+    .addon-name {
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .addon-price {
+      font-size: 0.8rem;
+      color: #4ade80;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .addon-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Inferis Tech</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="pricing.html" class="active">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+  </div>
+  <div class="badge"><div class="badge-dot"></div>Transparent Pricing</div>
+  <h1>Simple, <span class="gradient-text">Honest</span> Pricing</h1>
+  <p class="hero-sub">No hidden fees. No surprise invoices. Pick the plan that fits where your business is right now and scale up when you're ready.</p>
+</div>
+
+<section>
+  <div class="pricing-grid">
+    <!-- STARTER -->
+    <div class="pricing-card">
+      <div class="plan-name">Starter</div>
+      <div class="plan-price">$500</div>
+      <div class="plan-period">one-time payment</div>
+      <p class="plan-tagline">Perfect for small businesses that need a clean, professional online presence fast.</p>
+      <ul class="plan-features">
+        <li><span class="check">✓</span> Custom 5-page website</li>
+        <li><span class="check">✓</span> Mobile responsive design</li>
+        <li><span class="check">✓</span> Basic SEO setup</li>
+        <li><span class="check">✓</span> Contact form integration</li>
+        <li><span class="check">✓</span> Google Analytics setup</li>
+        <li><span class="check">✓</span> 30-day post-launch support</li>
+        <li><span class="dash">—</span> <span style="opacity:0.35">AI chatbot</span></li>
+        <li><span class="dash">—</span> <span style="opacity:0.35">Scheduling automation</span></li>
+        <li><span class="dash">—</span> <span style="opacity:0.35">AI voice agent</span></li>
+      </ul>
+      <a href="contact.html" class="plan-btn plan-btn-outline">Get Started</a>
+    </div>
+
+    <!-- GROWTH (FEATURED) -->
+    <div class="pricing-card featured">
+      <div class="featured-badge">Most Popular</div>
+      <div class="plan-name">Growth</div>
+      <div class="plan-price"><span class="gradient-text">$1,200</span></div>
+      <div class="plan-period">one-time + $150/mo retainer</div>
+      <p class="plan-tagline">The full package for businesses serious about converting leads and automating growth.</p>
+      <ul class="plan-features">
+        <li><span class="check">✓</span> Everything in Starter</li>
+        <li><span class="check">✓</span> Up to 10-page website</li>
+        <li><span class="check">✓</span> AI chatbot integration</li>
+        <li><span class="check">✓</span> Scheduling automation</li>
+        <li><span class="check">✓</span> Lead capture & CRM sync</li>
+        <li><span class="check">✓</span> Advanced SEO optimization</li>
+        <li><span class="check">✓</span> Monthly maintenance</li>
+        <li><span class="check">✓</span> Priority email support</li>
+        <li><span class="dash">—</span> <span style="opacity:0.35">AI voice agent</span></li>
+      </ul>
+      <a href="contact.html" class="plan-btn plan-btn-fill">Get Started →</a>
+    </div>
+
+    <!-- PRO -->
+    <div class="pricing-card">
+      <div class="plan-name">Pro</div>
+      <div class="plan-price">$2,500</div>
+      <div class="plan-period">one-time + $400/mo retainer</div>
+      <p class="plan-tagline">The complete AI-powered business system for companies ready to scale seriously.</p>
+      <ul class="plan-features">
+        <li><span class="check">✓</span> Everything in Growth</li>
+        <li><span class="check">✓</span> Unlimited pages</li>
+        <li><span class="check">✓</span> AI voice agent setup</li>
+        <li><span class="check">✓</span> Full workflow automation</li>
+        <li><span class="check">✓</span> Zapier/Make integrations</li>
+        <li><span class="check">✓</span> CRM & email marketing setup</li>
+        <li><span class="check">✓</span> Monthly strategy calls</li>
+        <li><span class="check">✓</span> Priority phone support</li>
+        <li><span class="check">✓</span> Quarterly site refresh</li>
+      </ul>
+      <a href="contact.html" class="plan-btn plan-btn-outline">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- ADD-ONS -->
+<section style="background: var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="section-label">Add-Ons</div>
+  <h2 class="section-title">Customize Your <span class="gradient-text2">Package</span></h2>
+  <p class="section-sub">Add any of these à la carte to any plan.</p>
+
+  <div class="add-ons-grid">
+    <div class="addon-card">
+      <div class="addon-icon">📞</div>
+      <div class="addon-name">Extra Voice Agent</div>
+      <div class="addon-price">+$200/mo</div>
+      <p class="addon-desc">Add a second AI phone agent for a different department or location.</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-icon">🌐</div>
+      <div class="addon-name">Extra Pages</div>
+      <div class="addon-price">+$75 each</div>
+      <p class="addon-desc">Add more pages to your site — blog posts, landing pages, product pages.</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-icon">🌍</div>
+      <div class="addon-name">Multi-Language</div>
+      <div class="addon-price">+$300</div>
+      <p class="addon-desc">Full site translation and localization into a second language.</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-icon">📊</div>
+      <div class="addon-name">Analytics Dashboard</div>
+      <div class="addon-price">+$150/mo</div>
+      <p class="addon-desc">Custom reporting dashboard with traffic, leads, and conversion tracking.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section>
+  <div class="section-label">Compare Plans</div>
+  <h2 class="section-title">Side by <span class="gradient-text">Side</span></h2>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th style="width:40%">Feature</th>
+        <th>Starter</th>
+        <th class="col-highlight">Growth</th>
+        <th>Pro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Custom Website</td><td class="yes">✓</td><td class="yes col-highlight">✓</td><td class="yes">✓</td></tr>
+      <tr><td>Mobile Responsive</td><td class="yes">✓</td><td class="yes col-highlight">✓</td><td class="yes">✓</td></tr>
+      <tr><td>Number of Pages</td><td>5</td><td class="col-highlight">10</td><td>Unlimited</td></tr>
+      <tr><td>Basic SEO</td><td class="yes">✓</td><td class="yes col-highlight">✓</td><td class="yes">✓</td></tr>
+      <tr><td>Advanced SEO</td><td class="no">—</td><td class="yes col-highlight">✓</td><td class="yes">✓</td></tr>
+      <tr><td>AI Chatbot</td><td class="no">—</td><td class="yes col-highlight">✓</td><td class="yes">✓</td></tr>
+      <tr><td>Scheduling Automation</td><td class="no">—</td><td class="yes col-highlight">✓</td><td class="yes">✓</td></tr>
+      <tr><td>AI Voice Agent</td><td class="no">—</td><td class="no col-highlight">—</td><td class="yes">✓</td></tr>
+      <tr><td>Workflow Automation</td><td class="no">—</td><td class="no col-highlight">—</td><td class="yes">✓</td></tr>
+      <tr><td>Monthly Maintenance</td><td class="no">—</td><td class="yes col-highlight">✓</td><td class="yes">✓</td></tr>
+      <tr><td>Monthly Strategy Calls</td><td class="no">—</td><td class="no col-highlight">—</td><td class="yes">✓</td></tr>
+      <tr><td>Post-launch Support</td><td>30 days</td><td class="col-highlight">Ongoing</td><td>Priority</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- FAQ -->
+<section style="background: var(--surface); border-top:1px solid var(--border);">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Common <span class="gradient-text2">Questions</span></h2>
+
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q">How long does a website take to build?</div>
+      <p class="faq-a">Most websites are completed within 2–3 weeks from kickoff. More complex projects with AI integrations may take 3–5 weeks. We'll give you a clear timeline upfront.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do I own the website after it's built?</div>
+      <p class="faq-a">Yes — 100%. Once paid, you own all the code, design assets, and content. No lock-in, no licensing fees. It's yours forever.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if I need changes after launch?</div>
+      <p class="faq-a">Starter includes 30 days of post-launch support. Growth and Pro plans include ongoing monthly maintenance as part of the retainer.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I upgrade my plan later?</div>
+      <p class="faq-a">Absolutely. You can start with Starter and add AI automation later. We'll just charge the difference and build on what's already there.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do you require a deposit?</div>
+      <p class="faq-a">Yes — we require a 50% deposit to kick off the project, with the remaining 50% due on launch day. We also accept payment plans for larger projects.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What platforms do you build on?</div>
+      <p class="faq-a">We build on plain HTML/CSS/JS, React, or Python depending on your needs. We'll recommend the best fit during your discovery call.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="cta-glow"></div>
+  <div class="section-label" style="justify-content:center;">Not sure which plan?</div>
+  <h2>Let's Figure It Out <span class="gradient-text">Together</span></h2>
+  <p>Book a free 30-minute call and we'll recommend exactly what your business needs.</p>
+  <div class="btn-row">
+    <a href="contact.html" class="btn-primary">Book a Free Call →</a>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">Inferis Tech</a>
+  <ul class="footer-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Inferis Tech. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

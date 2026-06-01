@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Work — Inferis Tech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .filter-row {
+      display: flex;
+      gap: 0.75rem;
+      margin: 3rem 0 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--font-body);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(74,222,128,0.08);
+      border-color: rgba(74,222,128,0.25);
+      color: #4ade80;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .work-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+
+    .work-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.15); }
+
+    .work-thumb {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .w1 { background: linear-gradient(135deg, #1a2a1a, #1a1a3a); }
+    .w2 { background: linear-gradient(135deg, #1a2a3a, #0a2a4a); }
+    .w3 { background: linear-gradient(135deg, #2a1a3a, #3a1a5a); }
+    .w4 { background: linear-gradient(135deg, #1a3a2a, #0a4a2a); }
+    .w5 { background: linear-gradient(135deg, #2a2a1a, #3a3a0a); }
+    .w6 { background: linear-gradient(135deg, #1a2a3a, #1a2a4a); }
+
+    .work-tag {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    .work-info { padding: 1.5rem; }
+
+    .work-title {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.3px;
+    }
+
+    .work-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.5;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .work-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .work-pill {
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .featured-work {
+      grid-column: span 2;
+    }
+
+    .featured-work .work-thumb { height: 280px; font-size: 5rem; }
+
+    .case-study-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .case-study {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+
+    .case-thumb {
+      background: linear-gradient(135deg, #1a2a1a, #1a1a3a);
+      border-radius: 20px;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      border: 1px solid var(--border);
+    }
+
+    .case-label {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #4ade80;
+      margin-bottom: 0.8rem;
+    }
+
+    .case-title {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .case-desc {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .case-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .metric {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .metric-val {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #f2f2f7;
+    }
+
+    .metric-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Inferis Tech</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="work.html" class="active">Work</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+  </div>
+  <div class="badge"><div class="badge-dot"></div>Portfolio</div>
+  <h1>Work That <span class="gradient-text2">Speaks</span></h1>
+  <p class="hero-sub">Real projects, real results. A growing portfolio of websites and AI solutions built for businesses across industries.</p>
+</div>
+
+<section>
+  <div class="filter-row">
+    <button class="filter-btn active" data-filter="all">All Work</button>
+    <button class="filter-btn" data-filter="web">Web Design</button>
+    <button class="filter-btn" data-filter="ai">AI Automation</button>
+    <button class="filter-btn" data-filter="branding">Branding</button>
+  </div>
+
+  <div class="work-grid">
+    <div class="work-card featured-work" data-category="web">
+      <div class="work-thumb w1">
+        <span>🏢</span>
+        <div class="work-tag">Featured</div>
+      </div>
+      <div class="work-info">
+        <div class="work-title">NVision IT — Complete Redesign</div>
+        <p class="work-desc">Full website redesign for an Oracle Gold Partner enterprise IT firm. Delivered three design iterations (V1–V3) with a modern design system, improved UX, and deployed on GitHub Pages.</p>
+        <div class="work-tags">
+          <span class="work-pill">Web Design</span>
+          <span class="work-pill">HTML/CSS</span>
+          <span class="work-pill">GitHub Pages</span>
+          <span class="work-pill">Enterprise IT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card" data-category="ai">
+      <div class="work-thumb w2">
+        <span>🤖</span>
+      </div>
+      <div class="work-info">
+        <div class="work-title">AI Scheduling System</div>
+        <p class="work-desc">24/7 automated booking with calendar sync and SMS reminders for a local med spa.</p>
+        <div class="work-tags">
+          <span class="work-pill">AI Automation</span>
+          <span class="work-pill">Cal.com</span>
+          <span class="work-pill">Zapier</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card" data-category="branding">
+      <div class="work-thumb w3">
+        <span>🛡️</span>
+      </div>
+      <div class="work-info">
+        <div class="work-title">Secure Our Families</div>
+        <p class="work-desc">Brand identity, visiting card design, and digital presence for a legacy planning firm.</p>
+        <div class="work-tags">
+          <span class="work-pill">Branding</span>
+          <span class="work-pill">Print Design</span>
+          <span class="work-pill">Web</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card" data-category="ai">
+      <div class="work-thumb w4">
+        <span>💬</span>
+      </div>
+      <div class="work-info">
+        <div class="work-title">Lead Capture Chatbot</div>
+        <p class="work-desc">Custom AI chatbot with CRM integration for a home services contractor.</p>
+        <div class="work-tags">
+          <span class="work-pill">AI Chatbot</span>
+          <span class="work-pill">Voiceflow</span>
+          <span class="work-pill">CRM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card" data-category="web">
+      <div class="work-thumb w5">
+        <span>🏗️</span>
+      </div>
+      <div class="work-info">
+        <div class="work-title">Buildright Contractors</div>
+        <p class="work-desc">Landing page + quote request system for a local construction company.</p>
+        <div class="work-tags">
+          <span class="work-pill">Web Design</span>
+          <span class="work-pill">Lead Gen</span>
+          <span class="work-pill">SEO</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card" data-category="ai">
+      <div class="work-thumb w6">
+        <span>📞</span>
+      </div>
+      <div class="work-info">
+        <div class="work-title">AI Voice Agent</div>
+        <p class="work-desc">Inbound AI phone agent for a dental practice — handles FAQs and books appointments.</p>
+        <div class="work-tags">
+          <span class="work-pill">Voice AI</span>
+          <span class="work-pill">Bland.ai</span>
+          <span class="work-pill">Healthcare</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<section class="case-study-section">
+  <div class="section-label">Case Study</div>
+  <h2 class="section-title">Deep Dive: <span class="gradient-text">NVision IT</span></h2>
+
+  <div class="case-study">
+    <div class="case-thumb">🏢</div>
+    <div>
+      <div class="case-label">Web Redesign · Enterprise IT</div>
+      <div class="case-title">From Outdated to Outstanding</div>
+      <p class="case-desc">NVision IT, an Oracle Gold Partner with 20+ years of enterprise experience, came to us with a dated website that didn't reflect their expertise. We delivered three complete design iterations — each building on client feedback — resulting in a modern, professional presence that builds trust immediately.</p>
+
+      <div class="case-metrics">
+        <div class="metric">
+          <div class="metric-val">3x</div>
+          <div class="metric-label">Design Iterations</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">V3</div>
+          <div class="metric-label">Current Live Version</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">100%</div>
+          <div class="metric-label">Client Approved</div>
+        </div>
+      </div>
+
+      <a href="contact.html" class="btn-primary">Start Your Project →</a>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="cta-glow"></div>
+  <div class="section-label" style="justify-content:center;">Your Project Next</div>
+  <h2>Ready to Build <span class="gradient-text">Something Great?</span></h2>
+  <p>Let's add your business to our portfolio. Book a free call and let's talk.</p>
+  <div class="btn-row">
+    <a href="contact.html" class="btn-primary">Book a Free Call →</a>
+    <a href="pricing.html" class="btn-outline">View Pricing</a>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">Inferis Tech</a>
+  <ul class="footer-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Inferis Tech. All rights reserved.</div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.work-card');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      cards.forEach(card => {
+        card.style.display = (filter === 'all' || card.getAttribute('data-category') === filter) ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>

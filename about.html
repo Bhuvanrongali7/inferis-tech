@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Inferis Tech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+
+    .about-visual {
+      background: linear-gradient(135deg, #1a2a1a, #1a1a3a, #1a2a3a);
+      border-radius: 24px;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 40%, rgba(74,222,128,0.08), transparent 60%),
+                  radial-gradient(ellipse at 70% 70%, rgba(92,244,212,0.1), transparent 60%);
+    }
+
+    .about-text h2 {
+      font-family: var(--font-head);
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 1.2rem;
+      line-height: 1.15;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .value-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+
+    .value-num {
+      font-family: var(--font-head);
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #4ade80, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.3;
+      margin-bottom: 0.8rem;
+    }
+
+    .value-title {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .value-desc {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .skills-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .skill-row {
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .skill-name { font-weight: 500; }
+    .skill-pct { color: var(--muted); font-weight: 300; }
+
+    .skill-bar {
+      height: 4px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #4ade80, #60a5fa);
+      transition: width 1s ease;
+    }
+
+    .timeline {
+      margin-top: 3.5rem;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      padding-left: 2.5rem;
+      padding-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -6px; top: 4px;
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4ade80, #60a5fa);
+      border: 2px solid var(--bg);
+    }
+
+    .timeline-year {
+      font-size: 0.75rem;
+      color: #4ade80;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-title {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-desc {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Inferis Tech</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+  </div>
+  <div class="badge"><div class="badge-dot"></div>Our Story</div>
+  <h1>Built by Someone Who <span class="gradient-text">Gets It</span></h1>
+  <p class="hero-sub">Inferis Tech was founded with one mission: give small businesses access to the same powerful tech that big companies use — without the big price tag.</p>
+</div>
+
+
+
+<!-- VALUES -->
+<section style="background: var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="section-label">What We Stand For</div>
+  <h2 class="section-title">Our <span class="gradient-text">Values</span></h2>
+
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-num">01</div>
+      <div class="value-title">Quality Over Everything</div>
+      <p class="value-desc">We don't ship mediocre work. Every project gets the same level of care and attention to detail, whether it's a $500 site or a $2,500 Pro package.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-num">02</div>
+      <div class="value-title">Honest Communication</div>
+      <p class="value-desc">No fluff, no overpromising. We tell you exactly what you're getting, how long it'll take, and what it'll cost — upfront.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-num">03</div>
+      <div class="value-title">Real Results</div>
+      <p class="value-desc">We measure success by your growth — more leads, more bookings, more revenue. A beautiful website that doesn't convert is a failure.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-num">04</div>
+      <div class="value-title">Always Learning</div>
+      <p class="value-desc">AI and web tech move fast. We stay ahead of the curve so our clients always get the most effective, up-to-date solutions.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-num">05</div>
+      <div class="value-title">Long-Term Thinking</div>
+      <p class="value-desc">We're not here for a one-time transaction. We want to be your go-to tech partner as your business grows for years to come.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-num">06</div>
+      <div class="value-title">Accessibility</div>
+      <p class="value-desc">Enterprise-grade technology shouldn't be reserved for big companies. We democratize powerful tools for businesses of all sizes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section">
+  <div class="section-label">Expertise</div>
+  <h2 class="section-title">Skills & <span class="gradient-text2">Tech Stack</span></h2>
+
+  <div class="skills-grid">
+    <div>
+      <div class="skill-row">
+        <div class="skill-header"><span class="skill-name">HTML / CSS</span><span class="skill-pct">95%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-header"><span class="skill-name">JavaScript</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-header"><span class="skill-name">Python</span><span class="skill-pct">80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-header"><span class="skill-name">Web Design (UI/UX)</span><span class="skill-pct">88%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-row">
+        <div class="skill-header"><span class="skill-name">AI Automation</span><span class="skill-pct">82%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-header"><span class="skill-name">Zapier / Make</span><span class="skill-pct">78%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-header"><span class="skill-name">SEO</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-header"><span class="skill-name">Video Editing</span><span class="skill-pct">80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section>
+  <div class="section-label">Journey</div>
+  <h2 class="section-title">How We <span class="gradient-text">Got Here</span></h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2023</div>
+      <div class="timeline-title">First Web Projects</div>
+      <p class="timeline-desc">Started learning HTML, CSS, and Python in high school. Built first websites for school projects and began exploring web design seriously.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2024</div>
+      <div class="timeline-title">NVision IT Redesign</div>
+      <p class="timeline-desc">Took on first real client — a full website redesign for NVision IT, an Oracle Gold Partner enterprise IT firm. Delivered 3 design iterations (V1–V3).</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2025</div>
+      <div class="timeline-title">AI Automation Deep Dive</div>
+      <p class="timeline-desc">Expanded into AI tools — Bland.ai, Voiceflow, Zapier — and started building automation systems for small business clients.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2026</div>
+      <div class="timeline-title">Inferis Tech Founded</div>
+      <p class="timeline-desc">Officially launched Inferis Tech as a full-service AI-powered digital agency. Starting college at UNC Charlotte while growing the business.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="cta-glow"></div>
+  <div class="section-label" style="justify-content:center;">Let's Build Together</div>
+  <h2>Ready to <span class="gradient-text">Work Together?</span></h2>
+  <p>Book a free strategy call and let's talk about what we can build for your business.</p>
+  <div class="btn-row">
+    <a href="contact.html" class="btn-primary">Book a Free Call →</a>
+    <a href="work.html" class="btn-outline">See Our Work</a>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">Inferis Tech</a>
+  <ul class="footer-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Inferis Tech. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
