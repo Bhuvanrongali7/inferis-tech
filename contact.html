@@ -228,6 +228,7 @@
     .success-msg h3 { font-family: var(--font-head); font-size: 1.3rem; margin-bottom: 0.5rem; }
     .success-msg p { color: var(--muted); font-size: 0.9rem; font-weight: 300; }
   </style>
+<script src="https://cal.com/embed.js" defer></script>
 </head>
 <body>
 
@@ -365,6 +366,20 @@
       </div>
     </div>
   </div>
+
+<!-- CAL.COM EMBED -->
+<div style="margin-top: 3rem;">
+  <div class="section-label">Book Directly</div>
+  <h2 class="section-title" style="margin-bottom:0.5rem;">Schedule a <span class="gradient-text">Free Call</span></h2>
+  <p class="section-sub" style="margin-bottom:2rem;">Pick a time that works for you — 30 minutes, no pressure.</p>
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; min-height: 600px;">
+    <cal-inline
+      calLink="inferistech-jzkwj8/free-start-call"
+      style="width:100%;height:600px;display:block;"
+    ></cal-inline>
+  </div>
+</div>
+
 </section>
 
 <footer>
@@ -399,11 +414,11 @@ function toggleNav() {
 }
 </script>
 <script>
-window.INFERIS_API_KEY = "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";
+window.INFERIS_API_KEY = "YOUR_OPENAI_API_KEY_HERE";
 </script>
 
 <script>
-window.INFERIS_API_KEY = "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";
+window.INFERIS_API_KEY = "YOUR_OPENAI_API_KEY_HERE";
 (function () {
   const SYSTEM_PROMPT = `You are Aria, the AI assistant for Inferis Tech — a digital agency run by Bhuvan Rongali that builds premium websites and AI automation solutions for small and medium businesses.
 
@@ -592,7 +607,7 @@ Email: hello@inferistech.com. Book a free 30-minute strategy call at the contact
     const text = inputEl.value.trim();
     if (!text || isLoading) return;
     const apiKey = window.INFERIS_API_KEY;
-    if (!apiKey || apiKey === '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') {
+    if (!apiKey || apiKey === 'YOUR_OPENAI_API_KEY_HERE') {
       addMessage('bot', 'Chat is not configured yet. Please reach out to us at hello@inferistech.com!');
       return;
     }
