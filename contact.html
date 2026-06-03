@@ -699,12 +699,10 @@
     }
   };
 
-  // Init — wait for DOM
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", renderCalendar);
-  } else {
+  // Init
+  window.addEventListener("load", function() {
     renderCalendar();
-  }
+  });
 })();
 </script>
 
