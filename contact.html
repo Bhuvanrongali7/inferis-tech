@@ -366,14 +366,6 @@
     </div>
   </div>
 
-  <h2 class="section-title" style="margin-bottom:0.5rem;">Schedule a <span class="gradient-text">Free Call</span></h2>
-  <p class="section-sub" style="margin-bottom:2rem;">Pick a time that works for you — 30 minutes, no pressure.</p>
-  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; min-height: 600px;">
-    <cal-inline
-      calLink="inferistech-jzkwj8/free-start-call"
-      style="width:100%;height:600px;display:block;"
-    ></cal-inline>
-  </div>
 </div>
 
 </section>
@@ -707,8 +699,12 @@
     }
   };
 
-  // Init
-  renderCalendar();
+  // Init — wait for DOM
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", renderCalendar);
+  } else {
+    renderCalendar();
+  }
 })();
 </script>
 
