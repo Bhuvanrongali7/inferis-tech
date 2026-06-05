@@ -616,13 +616,13 @@
       }
 
       container.innerHTML = slots.map(slot =>
-        '<div class="time-slot' + (slot === selectedTime ? ' selected' : '') + '" onclick="selectTime('' + slot + '')">' + formatTime(slot) + '</div>'
+        '<div class="time-slot' + (slot === selectedTime ? ' selected' : '') + " onclick=\"selectTime(\'" + slot + "\')\">" + formatTime(slot) + "</div>"
       ).join('');
     } catch (e) {
       // Fallback slots
       const fallback = ['09:00','09:30','10:00','10:30','11:00','11:30','13:00','13:30','14:00','14:30','15:00','15:30'];
       container.innerHTML = fallback.map(slot =>
-        '<div class="time-slot" onclick="selectTime('' + slot + '')">' + formatTime(slot) + '</div>'
+        `<div class="time-slot" onclick="selectTime('${slot}')">${formatTime(slot)}</div>`
       ).join('');
     }
   }
@@ -974,4 +974,12 @@ Email: hello@inferistech.com. Book a free 30-minute strategy call at the contact
 
 </script>
 </body>
+<script>
+setTimeout(function() {
+  var container = document.getElementById('calendar-grid');
+  if (container && container.innerHTML.trim() === '') {
+    if (typeof renderCalendar === 'function') renderCalendar();
+  }
+}, 500);
+</script>
 </html>
