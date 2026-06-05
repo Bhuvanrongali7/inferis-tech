@@ -603,27 +603,49 @@
 
   async function loadTimeSlots(dateStr) {
     const container = document.getElementById('time-slots');
+    if (!container) { console.error('time-slots container not found'); return; }
+    
     container.innerHTML = '<div class="no-slots">Loading available times...</div>';
 
+    let slots = [];
     try {
       const res = await fetch('/api/availability?date=' + dateStr);
-      const data = await res.json();
-      const slots = data.slots || [];
-
-      if (slots.length === 0) {
-        container.innerHTML = '<div class="no-slots">No available slots on this day. Please pick another date.</div>';
-        return;
+      if (res.ok) {
+        const data = await res.json();
+        slots = data.slots || [];
       }
-
-      container.innerHTML = slots.map(slot =>
-        `<div class="time-slot" onclick="selectTime('${slot}')">${formatTime(slot)}</div>`
-      ).join('');
     } catch (e) {
-      const fallback = ['09:00','09:30','10:00','10:30','11:00','11:30','13:00','13:30','14:00','14:30','15:00','15:30'];
-      container.innerHTML = fallback.map(slot =>
-        `<div class="time-slot" onclick="selectTime('${slot}')">${formatTime(slot)}</div>`
-      ).join('');
+      console.log('API fetch failed, using fallback:', e);
     }
+
+    // Use fallback if API returned nothing
+    if (slots.length === 0) {
+      slots = ['09:00','09:30','10:00','10:30','11:00','11:30','13:00','13:30','14:00','14:30','15:00','15:30'];
+    }
+
+    // Filter out past times if today
+    const now = new Date();
+    const todayStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+    if (dateStr === todayStr) {
+      slots = slots.filter(slot => {
+        const [h, m] = slot.split(':');
+        const slotTime = new Date();
+        slotTime.setHours(parseInt(h), parseInt(m), 0, 0);
+        return slotTime > now;
+      });
+    }
+
+    if (slots.length === 0) {
+      container.innerHTML = '<div class="no-slots">No available slots today. Please pick another date.</div>';
+      return;
+    }
+
+    const html = slots.map(slot =>
+      '<div class="time-slot" onclick="window.selectTime('' + slot + '')">' + formatTime(slot) + '</div>'
+    ).join('');
+    
+    container.innerHTML = html;
+    console.log('Loaded ' + slots.length + ' time slots for ' + dateStr);
   }
 
   window.selectTime = function(time) {
