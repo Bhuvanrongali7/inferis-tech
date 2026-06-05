@@ -597,8 +597,8 @@
     selectedTime = null;
     renderCalendar();
     document.getElementById('selected-date-label').textContent = '— ' + formatDisplayDate(dateStr);
-    loadTimeSlots(dateStr);
     goToStep(2);
+    loadTimeSlots(dateStr);
   };
 
   async function loadTimeSlots(dateStr) {
@@ -616,10 +616,9 @@
       }
 
       container.innerHTML = slots.map(slot =>
-        '<div class="time-slot' + (slot === selectedTime ? ' selected' : '') + " onclick=\"selectTime(\'" + slot + "\')\">" + formatTime(slot) + "</div>"
+        `<div class="time-slot" onclick="selectTime('${slot}')">${formatTime(slot)}</div>`
       ).join('');
     } catch (e) {
-      // Fallback slots
       const fallback = ['09:00','09:30','10:00','10:30','11:00','11:30','13:00','13:30','14:00','14:30','15:00','15:30'];
       container.innerHTML = fallback.map(slot =>
         `<div class="time-slot" onclick="selectTime('${slot}')">${formatTime(slot)}</div>`
