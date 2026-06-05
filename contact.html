@@ -641,7 +641,7 @@
     }
 
     const html = slots.map(slot =>
-      '<div class="time-slot" onclick="window.selectTime('' + slot + '')">' + formatTime(slot) + '</div>'
+      '<div class="time-slot" onclick="window.selectTime(\'' + slot + '\')">' + formatTime(slot) + '</div>'
     ).join('');
     
     container.innerHTML = html;
