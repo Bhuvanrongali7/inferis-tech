@@ -279,6 +279,27 @@
     }
   }
 
+  /* ---------------- Contact form -> pre-filled email ---------------- */
+  function contactForm() {
+    var form = document.getElementById("contactForm");
+    if (!form) return;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
+      var name = val("cf-name"), email = val("cf-email"), type = val("cf-type"), msg = val("cf-msg");
+      var note = document.getElementById("cf-note");
+      if (!name || !email) {
+        if (note) { note.textContent = "Please add your name and email so we can reply."; note.style.color = "#e879f9"; }
+        return;
+      }
+      var subject = "Project enquiry — " + name + " (" + type + ")";
+      var body = "Name: " + name + "\nEmail: " + email + "\nNeeds: " + type + "\n\n" + (msg || "");
+      var href = "mailto:bhuvan.rongali024@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      if (note) { note.textContent = "Opening your email app with the message pre-filled…"; note.style.color = "var(--cyan)"; }
+      window.location.href = href;
+    });
+  }
+
   /* ---------------- Process line fill ---------------- */
   function processLine() {
     var bar = document.getElementById("stepsProgress");
@@ -302,6 +323,7 @@
     tilt();
     nav();
     sceneDriver();
+    contactForm();
     processLine();
     if (hasST) setTimeout(function () { window.ScrollTrigger.refresh(); }, 400);
   }

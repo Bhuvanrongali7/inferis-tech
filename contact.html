@@ -1,982 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Inferis Tech</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 5rem;
-      margin-top: 4rem;
-      align-items: start;
-    }
-
-    .contact-info h3 {
-      font-family: var(--font-head);
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 0.8rem;
-      letter-spacing: -0.5px;
-    }
-
-    .contact-info p {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.7;
-      font-weight: 300;
-      margin-bottom: 2.5rem;
-    }
-
-    .contact-methods { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
-
-    .contact-method {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.2rem 1.5rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      text-decoration: none;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .contact-method:hover { border-color: rgba(74,222,128,0.25); transform: translateX(4px); }
-
-    .method-icon {
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .method-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 0.15rem;
-      font-weight: 400;
-      letter-spacing: 0.3px;
-    }
-
-    .method-value {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text);
-      font-family: var(--font-head);
-    }
-
-    .response-note {
-      background: rgba(124,92,252,0.08);
-      border: 1px solid rgba(74,222,128,0.1);
-      border-radius: 12px;
-      padding: 1rem 1.2rem;
-      font-size: 0.82rem;
-      color: #4ade80;
-      line-height: 1.5;
-    }
-
-    /* FORM */
-    .contact-form {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 2.5rem;
-    }
-
-    .form-title {
-      font-family: var(--font-head);
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
-      letter-spacing: -0.5px;
-    }
-
-    .form-subtitle {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
-
-    label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.3px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.8rem 1rem;
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      font-weight: 300;
-      outline: none;
-      transition: border-color 0.2s;
-      -webkit-appearance: none;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: rgba(74,222,128,0.4);
-    }
-
-    input::placeholder, textarea::placeholder {
-      color: rgba(240,238,255,0.25);
-    }
-
-    select option { background: #2c2c2e; color: var(--text); }
-
-    textarea { resize: vertical; min-height: 120px; }
-
-    .budget-options {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.6rem;
-      margin-top: 0.2rem;
-    }
-
-    .budget-opt {
-      position: relative;
-    }
-
-    .budget-opt input[type="radio"] {
-      position: absolute;
-      opacity: 0;
-      width: 0; height: 0;
-    }
-
-    .budget-opt label {
-      display: block;
-      padding: 0.6rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      text-align: center;
-      font-size: 0.78rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .budget-opt input[type="radio"]:checked + label {
-      border-color: rgba(74,222,128,0.4);
-      background: rgba(0,255,180,0.06);
-      color: #4ade80;
-    }
-
-    .budget-opt label:hover {
-      border-color: rgba(255,255,255,0.15);
-      color: var(--text);
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 1rem;
-      background: var(--grad1);
-      color: #fff;
-      border: none;
-      border-radius: 50px;
-      font-family: var(--font-head);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s;
-      margin-top: 0.5rem;
-      letter-spacing: 0.3px;
-    }
-
-    .submit-btn:hover { opacity: 0.85; transform: translateY(-2px); }
-
-    .form-note {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 0.8rem;
-      font-weight: 300;
-    }
-
-    .success-msg {
-      display: none;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .success-msg .icon { font-size: 3rem; margin-bottom: 1rem; }
-    .success-msg h3 { font-family: var(--font-head); font-size: 1.3rem; margin-bottom: 0.5rem; }
-    .success-msg p { color: var(--muted); font-size: 0.9rem; font-weight: 300; }
-  </style>
+  <meta name="description" content="Book a free 30-minute strategy call with Inferis Tech. Tell us about your project and we'll map exactly how to turn your idea into a result." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-<nav>
-  <a href="index.html" class="logo">Inferis Tech</a>
-  <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="pricing.html">Pricing</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html" class="nav-cta active">Book a Call</a></li>
-  </ul>
-</nav>
-
-<div class="page-hero">
-  <div class="hero-bg">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-  </div>
-  <div class="badge"><div class="badge-dot"></div>Free Strategy Call</div>
-  <h1>Let's Build <span class="gradient-text">Something</span></h1>
-  <p class="hero-sub">Fill out the form and we'll get back to you within 24 hours to schedule your free 30-minute strategy call.</p>
-</div>
-
-<section>
-  <div class="contact-layout">
-    <!-- LEFT: INFO -->
-    <div class="contact-info">
-      <h3>Get in Touch</h3>
-      <p>Whether you have a specific project in mind or just want to explore what's possible — we'd love to hear from you. No commitment, no pressure.</p>
-
-      <div class="contact-methods">
-        <a href="mailto:hello@inferistech.com" class="contact-method">
-          <div class="method-icon icon-cyan">📧</div>
-          <div>
-            <div class="method-label">Email us</div>
-            <div class="method-value">hello@inferistech.com</div>
-          </div>
-        </a>
-        <a href="#" class="contact-method">
-          <div class="method-icon icon-teal">📅</div>
-          <div>
-            <div class="method-label">Book directly</div>
-            <div class="method-value">Schedule a 30-min call</div>
-          </div>
-        </a>
-        <a href="#" class="contact-method">
-          <div class="method-icon icon-green">💼</div>
-          <div>
-            <div class="method-label">LinkedIn</div>
-            <div class="method-value">linkedin.com/in/bhuvan</div>
-          </div>
-        </a>
-      </div>
-
-      <div class="response-note">
-        ⚡ We typically respond within 4–8 hours during business hours. Most projects kick off within 1 week of first contact.
-      </div>
-    </div>
-
-    <!-- RIGHT: FORM -->
-    <div class="contact-form">
-      <div class="form-title">Start Your Project</div>
-      <div class="form-subtitle">Tell us about your business and what you're looking to build.</div>
-
-      <div id="contact-form-el">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" placeholder="John">
-          </div>
-          <div class="form-group">
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" placeholder="Smith">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="john@company.com">
-        </div>
-
-        <div class="form-group">
-          <label for="business">Business Name</label>
-          <input type="text" id="business" placeholder="Your Company LLC">
-        </div>
-
-        <div class="form-group">
-          <label for="service">Service Interested In</label>
-          <select id="service">
-            <option value="" disabled selected>Select a service...</option>
-            <option>Custom Website Design</option>
-            <option>AI Voice Agent</option>
-            <option>Scheduling Automation</option>
-            <option>AI Chatbot</option>
-            <option>Workflow Automation</option>
-            <option>Full Growth Package</option>
-            <option>Not sure yet — let's talk</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Budget Range</label>
-          <div class="budget-options">
-            <div class="budget-opt">
-              <input type="radio" name="budget" id="b1" value="under500">
-              <label for="b1">Under $500</label>
-            </div>
-            <div class="budget-opt">
-              <input type="radio" name="budget" id="b2" value="500-1500">
-              <label for="b2">$500–$1,500</label>
-            </div>
-            <div class="budget-opt">
-              <input type="radio" name="budget" id="b3" value="1500plus">
-              <label for="b3">$1,500+</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="message">Tell Us About Your Project</label>
-          <textarea id="message" placeholder="What does your business do? What are you trying to achieve? Any specific features or goals?"></textarea>
-        </div>
-
-        <button class="submit-btn" onclick="submitForm()">Send Message →</button>
-        <p class="form-note">🔒 Your info is safe with us. We never spam or share your data.</p>
-      </div>
-
-      <div class="success-msg" id="success-msg">
-        <div class="icon">🎉</div>
-        <h3>Message Sent!</h3>
-        <p>Thanks for reaching out! We'll get back to you within 24 hours to schedule your free strategy call.</p>
-      </div>
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo">INFERIS<span>.</span></div>
+      <div class="preloader__bar"><span id="preloaderBar"></span></div>
+      <div class="preloader__count"><span id="preloaderCount">0</span>%</div>
     </div>
   </div>
-
-</div>
-
-</section>
-
-<!-- CUSTOM BOOKING SYSTEM -->
-<section id="booking" style="background: var(--surface); border-top: 1px solid var(--border);">
-  <div class="section-label">Book a Call</div>
-  <h2 class="section-title">Schedule a <span class="gradient-text">Free Strategy Call</span></h2>
-  <p class="section-sub" style="margin-bottom: 2.5rem;">Pick a date and time that works for you — 30 minutes, no pressure, completely free.</p>
-
-  <div id="booking-steps">
-
-    <!-- STEP 1: Pick a date -->
-    <div id="step-1" class="booking-step">
-      <div class="step-header">
-        <div class="step-num-badge">1</div>
-        <div class="step-title-text">Pick a Date</div>
-      </div>
-      <div id="calendar-grid" class="calendar-grid"></div>
-    </div>
-
-    <!-- STEP 2: Pick a time -->
-    <div id="step-2" class="booking-step" style="display:none;">
-      <div class="step-header">
-        <div class="step-num-badge">2</div>
-        <div class="step-title-text">Pick a Time <span id="selected-date-label" style="color:var(--muted); font-weight:300; font-size:0.9rem;"></span></div>
-      </div>
-      <div id="time-slots" class="time-slots"></div>
-      <button class="back-btn" onclick="goToStep(1)">← Back</button>
-    </div>
-
-    <!-- STEP 3: Your details -->
-    <div id="step-3" class="booking-step" style="display:none;">
-      <div class="step-header">
-        <div class="step-num-badge">3</div>
-        <div class="step-title-text">Your Details</div>
-      </div>
-      <div class="booking-summary" id="booking-summary"></div>
-      <div class="booking-form-grid">
-        <div class="bform-group">
-          <label>First Name *</label>
-          <input type="text" id="b-fname" placeholder="John" />
-        </div>
-        <div class="bform-group">
-          <label>Last Name *</label>
-          <input type="text" id="b-lname" placeholder="Smith" />
-        </div>
-        <div class="bform-group" style="grid-column: span 2;">
-          <label>Email Address *</label>
-          <input type="email" id="b-email" placeholder="john@company.com" />
-        </div>
-        <div class="bform-group" style="grid-column: span 2;">
-          <label>Business Name</label>
-          <input type="text" id="b-business" placeholder="Your Company LLC" />
-        </div>
-        <div class="bform-group" style="grid-column: span 2;">
-          <label>Service Interested In</label>
-          <select id="b-service">
-            <option value="">Select a service...</option>
-            <option>Custom Website Design</option>
-            <option>AI Voice Agent</option>
-            <option>Scheduling Automation</option>
-            <option>AI Chatbot</option>
-            <option>Workflow Automation</option>
-            <option>Full Growth Package</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
-        <div class="bform-group" style="grid-column: span 2;">
-          <label>Tell us about your project</label>
-          <textarea id="b-message" placeholder="What are you trying to build or improve?" rows="3"></textarea>
-        </div>
-      </div>
-      <div style="display:flex; gap:1rem; margin-top:1.5rem; flex-wrap:wrap;">
-        <button class="back-btn" onclick="goToStep(2)">← Back</button>
-        <button class="confirm-btn" onclick="confirmBooking()">Confirm Booking →</button>
-      </div>
-      <div id="booking-error" style="display:none; color:#fc5c8a; font-size:0.85rem; margin-top:1rem;"></div>
-    </div>
-
-    <!-- STEP 4: Confirmation -->
-    <div id="step-4" class="booking-step" style="display:none; text-align:center; padding: 3rem 0;">
-      <div style="font-size:3.5rem; margin-bottom:1rem;">🎉</div>
-      <h3 style="font-family:var(--font-head); font-size:1.8rem; font-weight:700; margin-bottom:0.8rem;">You're Booked!</h3>
-      <p style="color:var(--muted); font-size:0.95rem; max-width:420px; margin:0 auto 1.5rem; font-weight:300; line-height:1.7;" id="confirm-message"></p>
-      <a href="index.html" class="btn-primary">Back to Home</a>
-    </div>
-
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="bg-fx" aria-hidden="true">
+    <div class="bg-grid"></div><div class="bg-glow bg-glow--1"></div><div class="bg-glow bg-glow--2"></div><div class="bg-noise"></div>
   </div>
-</section>
 
-<style>
-  .booking-step { max-width: 700px; }
-  .step-header { display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem; }
-  .step-num-badge { width:32px; height:32px; border-radius:50%; background:var(--grad1); color:#1c1c1e; display:flex; align-items:center; justify-content:center; font-family:var(--font-head); font-weight:700; font-size:0.85rem; flex-shrink:0; }
-  .step-title-text { font-family:var(--font-head); font-size:1.2rem; font-weight:700; }
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__brand" data-cursor="hover"><span class="nav__mark"></span>INFERIS<span class="nav__brand-dot">.</span>TECH</a>
+    <nav class="nav__links" id="navLinks">
+      <a href="services.html" data-cursor="hover">Services</a>
+      <a href="work.html" data-cursor="hover">Work</a>
+      <a href="process.html" data-cursor="hover">Process</a>
+      <a href="about.html" data-cursor="hover">About</a>
+      <a href="contact.html" class="nav__menu-cta active" data-cursor="hover">Book a Call</a>
+    </nav>
+    <a href="contact.html" class="btn btn--nav magnetic" data-cursor="hover"><span>Book a Call</span></a>
+    <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span></button>
+  </header>
 
-  .calendar-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; max-width:480px; }
-  .cal-day-header { text-align:center; font-size:0.72rem; color:var(--muted); font-weight:500; padding:4px 0; letter-spacing:0.5px; }
-  .cal-day { aspect-ratio:1; display:flex; align-items:center; justify-content:center; border-radius:8px; font-size:0.85rem; cursor:pointer; transition:all 0.15s; border:1px solid transparent; font-weight:400; }
-  .cal-day.available:hover { background:rgba(74,222,128,0.1); border-color:rgba(74,222,128,0.3); color:#4ade80; }
-  .cal-day.selected { background:linear-gradient(135deg,#4ade80,#60a5fa); color:#1c1c1e; font-weight:600; border-color:transparent; }
-  .cal-day.disabled { color:rgba(210,220,210,0.2); cursor:default; }
-  .cal-day.empty { cursor:default; }
-  .cal-month-nav { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; max-width:480px; }
-  .cal-month-label { font-family:var(--font-head); font-size:1rem; font-weight:600; }
-  .cal-nav-btn { background:var(--surface2); border:1px solid var(--border); color:var(--text); width:32px; height:32px; border-radius:8px; cursor:pointer; font-size:0.9rem; display:flex; align-items:center; justify-content:center; transition:border-color 0.2s; }
-  .cal-nav-btn:hover { border-color:rgba(74,222,128,0.4); }
+  <main id="top">
+    <section class="page-hero">
+      <span class="page-hero__eyebrow reveal">Let's talk</span>
+      <h1 class="reveal">Tell us the <em>idea</em></h1>
+      <p class="reveal">A free 30-minute call. No pressure, no jargon — just a clear plan to turn your vision into something real.</p>
+    </section>
 
-  .time-slots { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; max-width:480px; margin-bottom:1.5rem; }
-  .time-slot { padding:10px; border-radius:10px; border:1px solid var(--border); background:var(--surface2); color:var(--muted); font-size:0.85rem; cursor:pointer; transition:all 0.15s; text-align:center; }
-  .time-slot:hover { border-color:rgba(74,222,128,0.4); color:#4ade80; background:rgba(74,222,128,0.06); }
-  .time-slot.selected { background:linear-gradient(135deg,#4ade80,#60a5fa); color:#1c1c1e; font-weight:600; border-color:transparent; }
-  .time-slot.loading { opacity:0.4; cursor:default; }
-  .no-slots { color:var(--muted); font-size:0.88rem; font-weight:300; }
-
-  .booking-summary { background:var(--surface2); border:1px solid rgba(74,222,128,0.15); border-radius:12px; padding:1rem 1.2rem; margin-bottom:1.5rem; display:flex; gap:2rem; flex-wrap:wrap; }
-  .bs-item { font-size:0.85rem; }
-  .bs-label { color:var(--muted); font-size:0.75rem; margin-bottom:0.2rem; letter-spacing:0.5px; }
-  .bs-value { color:#4ade80; font-weight:600; font-family:var(--font-head); }
-
-  .booking-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-  .bform-group label { display:block; font-size:0.8rem; color:var(--muted); margin-bottom:0.4rem; font-weight:400; }
-  .bform-group input, .bform-group select, .bform-group textarea {
-    width:100%; background:var(--surface2); border:1px solid var(--border); border-radius:10px;
-    padding:0.75rem 1rem; color:var(--text); font-family:var(--font-body); font-size:0.9rem;
-    font-weight:300; outline:none; transition:border-color 0.2s;
-  }
-  .bform-group input:focus, .bform-group select:focus, .bform-group textarea:focus { border-color:rgba(74,222,128,0.4); }
-  .bform-group input::placeholder, .bform-group textarea::placeholder { color:rgba(210,220,210,0.25); }
-  .bform-group select option { background:#2c2c2e; }
-  .bform-group textarea { resize:vertical; }
-
-  .back-btn { background:transparent; border:1px solid var(--border); color:var(--muted); padding:0.75rem 1.5rem; border-radius:50px; cursor:pointer; font-family:var(--font-body); font-size:0.9rem; transition:all 0.2s; }
-  .back-btn:hover { border-color:rgba(255,255,255,0.2); color:var(--text); }
-  .confirm-btn { background:var(--grad1); color:#1c1c1e; padding:0.75rem 2rem; border-radius:50px; border:none; cursor:pointer; font-family:var(--font-head); font-size:0.95rem; font-weight:600; transition:opacity 0.2s, transform 0.2s; }
-  .confirm-btn:hover { opacity:0.85; transform:translateY(-2px); }
-  .confirm-btn:disabled { opacity:0.5; cursor:default; transform:none; }
-
-  @media (max-width: 768px) {
-    .time-slots { grid-template-columns: repeat(3,1fr); }
-    .booking-form-grid { grid-template-columns: 1fr; }
-    .bform-group[style*="span 2"] { grid-column: span 1 !important; }
-    .booking-summary { gap: 1rem; }
-  }
-</style>
-
-<script>
-(function() {
-  let selectedDate = null;
-  let selectedTime = null;
-  let currentMonth = new Date().getMonth();
-  let currentYear = new Date().getFullYear();
-
-  const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-
-  function formatDisplayDate(dateStr) {
-    const d = new Date(dateStr + 'T12:00:00');
-    return d.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
-  }
-
-  function formatTime(t) {
-    const [h, m] = t.split(':');
-    const hour = parseInt(h);
-    const ampm = hour >= 12 ? 'PM' : 'AM';
-    const displayHour = hour % 12 || 12;
-    return displayHour + ':' + m + ' ' + ampm + ' ET';
-  }
-
-  function goToStep(n) {
-    document.querySelectorAll('.booking-step').forEach(s => s.style.display = 'none');
-    document.getElementById('step-' + n).style.display = 'block';
-    document.getElementById('step-' + n).scrollIntoView({ behavior:'smooth', block:'start' });
-  }
-  window.goToStep = goToStep;
-
-  function renderCalendar() {
-    const container = document.getElementById('calendar-grid');
-    const today = new Date();
-    today.setHours(0,0,0,0);
-
-    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-    let html = '<div class="cal-month-nav" style="grid-column:span 7;">';
-    html += '<button class="cal-nav-btn" onclick="prevMonth()">‹</button>';
-    html += '<div class="cal-month-label">' + MONTHS[currentMonth] + ' ' + currentYear + '</div>';
-    html += '<button class="cal-nav-btn" onclick="nextMonth()">›</button>';
-    html += '</div>';
-
-    DAYS.forEach(d => { html += '<div class="cal-day-header">' + d + '</div>'; });
-
-    for (let i = 0; i < firstDay; i++) html += '<div class="cal-day empty"></div>';
-
-    for (let day = 1; day <= daysInMonth; day++) {
-      const date = new Date(currentYear, currentMonth, day);
-      const dateStr = currentYear + '-' + String(currentMonth+1).padStart(2,'0') + '-' + String(day).padStart(2,'0');
-      const tomorrow = new Date(today);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      const isPast = date < tomorrow;
-      const isWeekend = date.getDay() === 0 || date.getDay() === 6;
-      const isSelected = dateStr === selectedDate;
-
-      let cls = 'cal-day';
-      if (isPast || isWeekend) cls += ' disabled';
-      else cls += ' available';
-      if (isSelected) cls += ' selected';
-
-      const onclick = (!isPast && !isWeekend) ? 'selectDate("' + dateStr + '")' : '';
-      html += '<div class="' + cls + '" ' + (onclick ? 'onclick="' + onclick + '"' : '') + '>' + day + '</div>';
-    }
-
-    container.innerHTML = html;
-  }
-
-  window.prevMonth = function() {
-    currentMonth--;
-    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
-    renderCalendar();
-  };
-
-  window.nextMonth = function() {
-    currentMonth++;
-    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
-    renderCalendar();
-  };
-
-  window.selectDate = function(dateStr) {
-    selectedDate = dateStr;
-    selectedTime = null;
-    renderCalendar();
-    document.getElementById('selected-date-label').textContent = '— ' + formatDisplayDate(dateStr);
-    goToStep(2);
-    loadTimeSlots(dateStr);
-  };
-
-  function loadTimeSlots(dateStr) {
-    var container = document.getElementById('time-slots');
-    if (!container) return;
-
-    var allSlots = ['09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30'];
-
-    var html = '';
-    for (var i = 0; i < allSlots.length; i++) {
-      var slot = allSlots[i];
-      html += '<div class="time-slot" data-slot="' + slot + '">' + formatTime(slot) + '</div>';
-    }
-    container.innerHTML = html;
-
-    // Add click handlers after rendering
-    container.querySelectorAll('.time-slot').forEach(function(el) {
-      el.addEventListener('click', function() {
-        window.selectTime(this.getAttribute('data-slot'));
-      });
-    });
-  }
-
-  window.selectTime = function(time) {
-    selectedTime = time;
-    document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
-    event.target.classList.add('selected');
-    setTimeout(() => {
-      document.getElementById('booking-summary').innerHTML =
-        '<div class="bs-item"><div class="bs-label">DATE</div><div class="bs-value">' + formatDisplayDate(selectedDate) + '</div></div>' +
-        '<div class="bs-item"><div class="bs-label">TIME</div><div class="bs-value">' + formatTime(time) + '</div></div>' +
-        '<div class="bs-item"><div class="bs-label">DURATION</div><div class="bs-value">30 minutes</div></div>';
-      goToStep(3);
-    }, 200);
-  };
-
-  window.confirmBooking = async function() {
-    const fname = document.getElementById('b-fname').value.trim();
-    const lname = document.getElementById('b-lname').value.trim();
-    const email = document.getElementById('b-email').value.trim();
-    const business = document.getElementById('b-business').value.trim();
-    const service = document.getElementById('b-service').value;
-    const message = document.getElementById('b-message').value.trim();
-    const errorEl = document.getElementById('booking-error');
-    const btn = document.querySelector('.confirm-btn');
-
-    if (!fname || !lname || !email) {
-      errorEl.textContent = 'Please fill in your name and email.';
-      errorEl.style.display = 'block';
-      return;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errorEl.textContent = 'Please enter a valid email address.';
-      errorEl.style.display = 'block';
-      return;
-    }
-
-    errorEl.style.display = 'none';
-    btn.disabled = true;
-    btn.textContent = 'Confirming...';
-
-    try {
-      const res = await fetch('/api/book', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: fname + ' ' + lname,
-          email, business, service, message,
-          date: selectedDate,
-          time: selectedTime
-        })
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        document.getElementById('confirm-message').textContent =
-          'Your call is booked for ' + formatDisplayDate(selectedDate) + ' at ' + formatTime(selectedTime) +
-          '. We sent a confirmation to ' + email + '. See you then!';
-        goToStep(4);
-      } else {
-        errorEl.textContent = data.error || 'Something went wrong. Please email us at inferistech@gmail.com';
-        errorEl.style.display = 'block';
-        btn.disabled = false;
-        btn.textContent = 'Confirm Booking →';
-      }
-    } catch (e) {
-      errorEl.textContent = 'Connection error. Please email us at inferistech@gmail.com';
-      errorEl.style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = 'Confirm Booking →';
-    }
-  };
-
-  // Init
-  window.addEventListener("load", function() {
-    renderCalendar();
-  });
-})();
-</script>
-
-<footer>
-  <a href="index.html" class="footer-logo">Inferis Tech</a>
-  <ul class="footer-links">
-    <li><a href="services.html">Services</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="pricing.html">Pricing</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <div class="footer-copy">© 2026 Inferis Tech. All rights reserved.</div>
-</footer>
-
-<script>
-function submitForm() {
-  const fname = document.getElementById('fname').value;
-  const email = document.getElementById('email').value;
-  if (!fname || !email) {
-    alert('Please fill in at least your name and email.');
-    return;
-  }
-  document.getElementById('contact-form-el').style.display = 'none';
-  document.getElementById('success-msg').style.display = 'block';
-}
-</script>
-<script src="js/nav.js"></script>
-<script>
-function toggleNav() {
-  document.getElementById("hamburger").classList.toggle("open");
-  document.getElementById("nav-links").classList.toggle("open");
-}
-</script>
-<script>
-window.INFERIS_API_KEY = "YOUR_OPENAI_API_KEY_HERE";
-</script>
-
-<script>
-window.INFERIS_API_KEY = "YOUR_OPENAI_API_KEY_HERE";
-(function () {
-  const SYSTEM_PROMPT = `You are Aria, the AI assistant for Inferis Tech — a digital agency run by Bhuvan Rongali that builds premium websites and AI automation solutions for small and medium businesses.
-
-Your job is to help website visitors understand what Inferis Tech offers, answer their questions, and guide them toward booking a free strategy call.
-
-== ABOUT INFERIS TECH ==
-Inferis Tech is an AI-powered digital agency based in the Raleigh-Charlotte, NC area. We help small businesses compete with enterprise companies by giving them access to the same powerful technology — without the big price tag.
-Founder: Bhuvan Rongali — incoming Finance & Accounting student at UNC Charlotte (Belk College of Business). Experienced web developer and AI automation builder with real client work delivered.
-
-== SERVICES ==
-1. Custom Website Design - Hand-crafted, pixel-perfect websites built from scratch. Mobile-first, fast-loading, SEO-optimized. Built with HTML/CSS/JS or React. Delivered in 2-3 weeks.
-2. AI Voice Agents - AI phone agents that answer calls 24/7. Handle FAQs, qualify leads, book appointments automatically. Built with Bland.ai.
-3. Scheduling Automation - AI-powered booking systems synced to your calendar. Auto email/SMS reminders. Built with Cal.com + Zapier.
-4. AI Chatbots - Smart website chat widgets trained on your business. Capture leads, answer questions 24/7. Built with custom GPT integration.
-5. Workflow Automation - Connect your tools and automate repetitive tasks. Built with Zapier and Make.
-6. SEO & Performance - On-page SEO, Google Search Console setup, Core Web Vitals optimization.
-
-== PRICING ==
-Starter Plan — $500 one-time: Custom 5-page website, mobile responsive, basic SEO, contact form, 30-day support.
-Growth Plan — $1,200 one-time + $150/month (Most Popular): Everything in Starter + up to 10 pages, AI chatbot, scheduling automation, lead capture, advanced SEO, monthly maintenance.
-Pro Plan — $2,500 one-time + $400/month: Everything in Growth + unlimited pages, AI voice agent, full workflow automation, CRM setup, monthly strategy calls, priority support.
-Add-ons: Extra voice agent (+$200/mo), extra pages (+$75 each), multi-language (+$300), analytics dashboard (+$150/mo).
-
-== PORTFOLIO ==
-NVision IT — Full website redesign for an Oracle Gold Partner enterprise IT firm.
-Secure Our Families — Brand identity and digital presence for a legacy planning firm.
-AI Scheduling System — 24/7 booking automation for a local med spa.
-Lead Capture Chatbot — Custom AI chatbot with CRM integration for a contractor.
-AI Voice Agent — Inbound AI phone agent for a dental practice.
-
-== CONTACT ==
-Email: hello@inferistech.com. Book a free 30-minute strategy call at the contact page.
-
-== HOW TO RESPOND ==
-- Be friendly, direct, and helpful — no corporate fluff
-- Keep responses concise (2-4 sentences max unless they ask for detail)
-- If someone asks about pricing, give them the info and invite them to book a call
-- If someone is ready to start, direct them to hello@inferistech.com or the contact page
-- Never make up services, prices, or capabilities not listed above
-- Always end with a helpful next step or question`;
-
-  const style = document.createElement('style');
-  style.textContent = `
-    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
-    #inferis-chat-btn {
-      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
-      width: 56px; height: 56px; border-radius: 50%;
-      background: linear-gradient(135deg, #4ade80, #60a5fa);
-      border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 20px rgba(74,222,128,0.35); transition: transform 0.2s, box-shadow 0.2s; font-size: 22px;
-    }
-    #inferis-chat-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(74,222,128,0.45); }
-    #inferis-chat-btn .chat-icon { display: block; }
-    #inferis-chat-btn .close-icon { display: none; color: #1c1c1e; font-size: 18px; font-weight: 700; }
-    #inferis-chat-btn.open .chat-icon { display: none; }
-    #inferis-chat-btn.open .close-icon { display: block; }
-    #inferis-chat-window {
-      position: fixed; bottom: 92px; right: 24px; z-index: 9998;
-      width: 360px; height: 520px; background: #1c1c1e;
-      border: 1px solid rgba(74,222,128,0.15); border-radius: 20px;
-      display: flex; flex-direction: column; overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      transform: scale(0.92) translateY(12px); opacity: 0; pointer-events: none;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s;
-      font-family: 'DM Sans', sans-serif;
-    }
-    #inferis-chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
-    .ic-header { padding: 14px 16px; background: #242426; border-bottom: 1px solid rgba(74,222,128,0.1); display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .ic-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #4ade80, #60a5fa); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-    .ic-header-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: #f2f2f7; line-height: 1.2; }
-    .ic-header-status { font-size: 11px; color: rgba(210,220,210,0.5); display: flex; align-items: center; gap: 4px; }
-    .ic-status-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; animation: ic-pulse 2s infinite; }
-    @keyframes ic-pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-    .ic-powered { font-size: 10px; color: rgba(210,220,210,0.25); font-weight: 300; margin-left: auto; }
-    .ic-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth; }
-    .ic-messages::-webkit-scrollbar { width: 4px; }
-    .ic-messages::-webkit-scrollbar-thumb { background: rgba(74,222,128,0.2); border-radius: 4px; }
-    .ic-msg { max-width: 85%; padding: 10px 14px; border-radius: 16px; font-size: 13.5px; line-height: 1.55; animation: ic-fadein 0.2s ease; }
-    @keyframes ic-fadein { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-    .ic-msg.bot { background: #2c2c2e; color: #f2f2f7; border-radius: 16px 16px 16px 4px; align-self: flex-start; border: 1px solid rgba(74,222,128,0.08); }
-    .ic-msg.user { background: linear-gradient(135deg, #4ade80, #60a5fa); color: #1c1c1e; font-weight: 500; border-radius: 16px 16px 4px 16px; align-self: flex-end; }
-    .ic-typing { display: flex; gap: 4px; align-items: center; padding: 12px 14px; background: #2c2c2e; border-radius: 16px 16px 16px 4px; align-self: flex-start; border: 1px solid rgba(74,222,128,0.08); }
-    .ic-typing span { width: 6px; height: 6px; background: rgba(74,222,128,0.6); border-radius: 50%; animation: ic-bounce 1.2s infinite; }
-    .ic-typing span:nth-child(2){animation-delay:0.2s} .ic-typing span:nth-child(3){animation-delay:0.4s}
-    @keyframes ic-bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
-    .ic-suggestions { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 10px; flex-shrink: 0; }
-    .ic-suggestion { padding: 5px 11px; border-radius: 50px; border: 1px solid rgba(74,222,128,0.2); background: transparent; color: rgba(210,220,210,0.7); font-size: 12px; cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
-    .ic-suggestion:hover { border-color: rgba(74,222,128,0.5); color: #4ade80; background: rgba(74,222,128,0.06); }
-    .ic-input-row { padding: 12px 14px; background: #242426; border-top: 1px solid rgba(74,222,128,0.08); display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
-    .ic-input { flex: 1; background: #2c2c2e; border: 1px solid rgba(74,222,128,0.1); border-radius: 50px; padding: 9px 16px; color: #f2f2f7; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 300; outline: none; transition: border-color 0.2s; }
-    .ic-input::placeholder { color: rgba(210,220,210,0.3); }
-    .ic-input:focus { border-color: rgba(74,222,128,0.35); }
-    .ic-send { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #4ade80, #60a5fa); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.2s, transform 0.2s; flex-shrink: 0; }
-    .ic-send:hover { opacity: 0.85; transform: scale(1.05); }
-    .ic-send:disabled { opacity: 0.4; cursor: default; transform: none; }
-    .ic-send svg { width: 16px; height: 16px; fill: #1c1c1e; }
-    @media (max-width: 480px) {
-      #inferis-chat-window { width: calc(100vw - 24px); right: 12px; bottom: 84px; height: 70vh; }
-      #inferis-chat-btn { right: 16px; bottom: 16px; }
-    }
-  `;
-  document.head.appendChild(style);
-
-  const btn = document.createElement('button');
-  btn.id = 'inferis-chat-btn';
-  btn.setAttribute('aria-label', 'Open chat');
-  btn.innerHTML = '<span class="chat-icon">💬</span><span class="close-icon">✕</span>';
-
-  const win = document.createElement('div');
-  win.id = 'inferis-chat-window';
-  win.innerHTML = `
-    <div class="ic-header">
-      <div class="ic-avatar">🤖</div>
-      <div class="ic-header-info">
-        <div class="ic-header-name">Aria &middot; Inferis Tech</div>
-        <div class="ic-header-status"><span class="ic-status-dot"></span> Online now</div>
+    <!-- SIGNATURE SCROLL SCENE: signal wave -->
+    <section class="scene" id="scene" style="--scene-h:260vh">
+      <div class="scene__sticky">
+        <canvas id="sceneCanvas" class="scene__canvas"></canvas>
+        <div class="scene__copy">
+          <div class="scene__step">
+            <span class="scene__kicker">01 — Reach out</span>
+            <h2>Send a signal.</h2>
+            <p>Drop your details below — move your mouse and watch the field ripple.</p>
+          </div>
+          <div class="scene__step">
+            <span class="scene__kicker">02 — We connect</span>
+            <h2>We'll reply fast.</h2>
+            <p>Usually within one business day, with real, useful next steps.</p>
+          </div>
+        </div>
+        <div class="scene__progress"><span id="sceneProgress"></span></div>
       </div>
-      <div class="ic-powered">GPT-4o</div>
-    </div>
-    <div class="ic-messages" id="ic-messages"></div>
-    <div class="ic-suggestions" id="ic-suggestions">
-      <button class="ic-suggestion">What services do you offer?</button>
-      <button class="ic-suggestion">How much does it cost?</button>
-      <button class="ic-suggestion">How do I get started?</button>
-    </div>
-    <div class="ic-input-row">
-      <input class="ic-input" id="ic-input" type="text" placeholder="Ask me anything..." autocomplete="off" />
-      <button class="ic-send" id="ic-send" aria-label="Send">
-        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-      </button>
-    </div>
-  `;
+    </section>
 
-  document.body.appendChild(btn);
-  document.body.appendChild(win);
+    <!-- CONTACT FORM -->
+    <section class="section" id="contact">
+      <div class="contact-wrap">
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <div class="field">
+            <label for="cf-name">Your name</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Jane Doe" required />
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" placeholder="jane@company.com" required />
+          </div>
+          <div class="field">
+            <label for="cf-type">What do you need?</label>
+            <select id="cf-type" name="type">
+              <option>A new website</option>
+              <option>A website redesign / fix</option>
+              <option>AI chatbot or voice agent</option>
+              <option>Scheduling / workflow automation</option>
+              <option>Not sure yet — let's talk</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cf-msg">Tell us about your project</label>
+            <textarea id="cf-msg" name="message" placeholder="A few sentences about your business and what you're hoping to build..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg magnetic" data-cursor="hover">
+            <span>Send message</span>
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p id="cf-note" style="color:var(--faint);font-size:.85rem;margin-top:1rem;">This opens a pre-filled email in your mail app — you stay in control and hit send yourself.</p>
+        </form>
 
-  const messages = [{ role: 'system', content: SYSTEM_PROMPT }];
-  let isOpen = false, isLoading = false, greeted = false;
-  const messagesEl = document.getElementById('ic-messages');
-  const inputEl = document.getElementById('ic-input');
-  const sendEl = document.getElementById('ic-send');
-  const suggestionsEl = document.getElementById('ic-suggestions');
+        <aside class="contact-aside reveal">
+          <h3>Prefer to keep it simple?</h3>
+          <div class="row">
+            <div><b>Email us</b><span><a href="mailto:bhuvan.rongali024@gmail.com?subject=Project%20enquiry%20for%20Inferis">bhuvan.rongali024@gmail.com</a></span></div>
+          </div>
+          <div class="row">
+            <div><b>Response time</b><span>Within one business day</span></div>
+          </div>
+          <div class="row">
+            <div><b>Free strategy call</b><span>30 minutes, zero obligation</span></div>
+          </div>
+          <div class="row">
+            <div><b>Where</b><span>Remote — working with clients everywhere</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-  btn.addEventListener('click', () => {
-    isOpen = !isOpen;
-    btn.classList.toggle('open', isOpen);
-    win.classList.toggle('open', isOpen);
-    if (isOpen && !greeted) {
-      greeted = true;
-      setTimeout(() => addMessage('bot', "Hey! 👋 I'm Aria, Inferis Tech's AI assistant. I can tell you about our services, pricing, and how we can help your business. What's on your mind?"), 300);
-    }
-    if (isOpen) setTimeout(() => inputEl.focus(), 300);
-  });
+    <nav class="pagenav">
+      <a href="about.html" data-cursor="hover"><small>← Previous</small><b>About</b></a>
+      <a href="index.html" class="next" data-cursor="hover"><small>Back to →</small><b>Home</b></a>
+    </nav>
 
-  suggestionsEl.querySelectorAll('.ic-suggestion').forEach(s => {
-    s.addEventListener('click', () => {
-      inputEl.value = s.textContent;
-      suggestionsEl.style.display = 'none';
-      sendMessage();
-    });
-  });
+    <footer class="footer">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__brand">INFERIS<span class="nav__brand-dot">.</span>TECH</a>
+          <p>We build smarter digital experiences — websites &amp; AI automation that turn ideas into reality.</p>
+        </div>
+        <nav class="footer__nav">
+          <a href="services.html" data-cursor="hover">Services</a>
+          <a href="work.html" data-cursor="hover">Work</a>
+          <a href="process.html" data-cursor="hover">Process</a>
+          <a href="about.html" data-cursor="hover">About</a>
+          <a href="contact.html" data-cursor="hover">Book a Call</a>
+        </nav>
+      </div>
+      <div class="footer__bottom"><span>© 2026 Inferis Tech. All rights reserved.</span><span>Designed &amp; built in-house.</span></div>
+    </footer>
+  </main>
 
-  sendEl.addEventListener('click', sendMessage);
-  inputEl.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) sendMessage(); });
-
-  function addMessage(role, text) {
-    const div = document.createElement('div');
-    div.className = 'ic-msg ' + role;
-    div.textContent = text;
-    messagesEl.appendChild(div);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-    return div;
-  }
-
-  function addTyping() {
-    const div = document.createElement('div');
-    div.className = 'ic-typing'; div.id = 'ic-typing';
-    div.innerHTML = '<span></span><span></span><span></span>';
-    messagesEl.appendChild(div);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-  }
-
-  function removeTyping() { const t = document.getElementById('ic-typing'); if (t) t.remove(); }
-
-  async function sendMessage() {
-    const text = inputEl.value.trim();
-    if (!text || isLoading) return;
-    const apiKey = window.INFERIS_API_KEY;
-    if (!apiKey || apiKey === 'YOUR_OPENAI_API_KEY_HERE') {
-      addMessage('bot', 'Chat is not configured yet. Please reach out to us at hello@inferistech.com!');
-      return;
-    }
-    suggestionsEl.style.display = 'none';
-    inputEl.value = '';
-    addMessage('user', text);
-    messages.push({ role: 'user', content: text });
-    isLoading = true; sendEl.disabled = true;
-    addTyping();
-    try {
-      const res = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey },
-        body: JSON.stringify({ model: 'gpt-4o-mini', messages: messages, max_tokens: 300, temperature: 0.7 })
-      });
-      const data = await res.json();
-      if (data.error) {
-        removeTyping();
-        const code = data.error.code || data.error.type || '';
-        let msg = "I'm having a little trouble right now. Reach out to us at hello@inferistech.com and we'll get back to you!";
-        if (code === 'insufficient_quota' || code === 'billing_hard_limit_reached')
-          msg = "I'm temporarily unavailable. You can reach us at hello@inferistech.com and we'll be happy to help!";
-        else if (code === 'rate_limit_exceeded')
-          msg = "I'm getting a lot of questions right now! Try again in a moment or email us at hello@inferistech.com.";
-        addMessage('bot', msg);
-        return;
-      }
-      const reply = data.choices[0].message.content;
-      messages.push({ role: 'assistant', content: reply });
-      removeTyping();
-      addMessage('bot', reply);
-    } catch (err) {
-      removeTyping();
-      addMessage('bot', "Something went wrong on my end. Feel free to reach out at hello@inferistech.com and we'll help you out!");
-    } finally {
-      isLoading = false; sendEl.disabled = false; inputEl.focus();
-    }
-  }
-})();
-
-</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="scene-contact.js"></script>
+  <script src="app.js"></script>
 </body>
-<script>
-setTimeout(function() {
-  var container = document.getElementById('calendar-grid');
-  if (container && container.innerHTML.trim() === '') {
-    if (typeof renderCalendar === 'function') renderCalendar();
-  }
-}, 500);
-</script>
 </html>
