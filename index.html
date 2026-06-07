@@ -1,726 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inferis Tech — AI-Powered Digital Agency</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 8rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inferis Tech — We Build Smarter Digital Experiences</title>
+  <meta name="description" content="Inferis Tech is an AI-powered digital agency building premium websites and intelligent automation for businesses ready to grow. From a single idea to a living digital experience." />
+  <meta property="og:title" content="Inferis Tech — We Build Smarter Digital Experiences" />
+  <meta property="og:description" content="Premium websites & AI automation that turn ideas into reality." />
+  <meta property="og:type" content="website" />
 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3.5rem;
-    }
-
-    .services-grid .card:nth-child(1) .card-top-bar { background: var(--grad1); }
-    .services-grid .card:nth-child(2) .card-top-bar { background: var(--grad2); }
-    .services-grid .card:nth-child(3) .card-top-bar { background: linear-gradient(135deg,#fc5c8a,#4ade80); }
-    .services-grid .card:nth-child(4) .card-top-bar { background: linear-gradient(135deg,#5cf4d4,#4ade80); }
-    .services-grid .card:nth-child(5) .card-top-bar { background: linear-gradient(135deg,#4ade80,#fc5c8a); }
-    .services-grid .card:nth-child(6) .card-top-bar { background: linear-gradient(135deg,#4ade80,#5cf4d4); }
-
-    .process-section {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      margin-top: 3.5rem;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .process-step {
-      padding: 2rem;
-      border-right: 1px solid var(--border);
-    }
-
-    .process-step:last-child { border-right: none; }
-
-    .step-num {
-      font-family: var(--font-head);
-      font-size: 3rem;
-      font-weight: 800;
-      color: #f2f2f7;
-      opacity: 0.25;
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-
-    .step-title {
-      font-family: var(--font-head);
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .step-desc {
-      color: var(--muted);
-      font-size: 0.83rem;
-      line-height: 1.6;
-      font-weight: 300;
-    }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 3.5rem;
-    }
-
-    .portfolio-card {
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: transform 0.3s;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .portfolio-card:hover { transform: translateY(-4px); }
-
-    .portfolio-thumb {
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .p1 { background: linear-gradient(135deg, #1a2a1a, #1a1a3a); }
-    .p2 { background: linear-gradient(135deg, #1a2a3a, #0a2a4a); }
-    .p3 { background: linear-gradient(135deg, #2a1a3a, #3a1a5a); }
-    .p4 { background: linear-gradient(135deg, #1a3a2a, #0a4a2a); }
-
-    .portfolio-label {
-      position: absolute;
-      bottom: 1rem; left: 1rem;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
-      padding: 0.3rem 0.8rem;
-      border-radius: 50px;
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.5px;
-    }
-
-    .portfolio-info {
-      background: var(--surface);
-      padding: 1.2rem 1.5rem;
-    }
-
-    .portfolio-title {
-      font-family: var(--font-head);
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-      color: var(--text);
-    }
-
-    .portfolio-sub {
-      font-size: 0.82rem;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3.5rem;
-    }
-
-    .testimonial-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
-    }
-
-    .stars {
-      color: #4ade80;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-      letter-spacing: 2px;
-    }
-
-    .testimonial-text {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.7;
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .author-avatar {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      font-weight: 600;
-      font-family: var(--font-head);
-    }
-
-    .av1 { background: rgba(74,222,128,0.2); color: #4ade80; }
-    .av2 { background: rgba(96,165,250,0.12); color: #60a5fa; }
-    .av3 { background: rgba(74,222,128,0.2); color: #a78bfa; }
-
-    .author-name {
-      font-size: 0.88rem;
-      font-weight: 500;
-      font-family: var(--font-head);
-    }
-
-    .author-role {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-<nav>
-  <a href="index.html" class="logo">Inferis Tech</a>
-  <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="pricing.html">Pricing</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html" class="nav-cta">Book a Call</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
-  </div>
-
-  <div class="badge">
-    <div class="badge-dot"></div>
-    AI-Powered Digital Agency
-  </div>
-
-  <h1>We Build <span class="gradient-text">Smarter</span><br>Digital Experiences</h1>
-
-  <p class="hero-sub">Premium websites and AI automation solutions for businesses ready to grow. From design to deployment — we handle everything.</p>
-
-  <div class="btn-row">
-    <a href="contact.html" class="btn-primary">Start Your Project →</a>
-    <a href="work.html" class="btn-outline">View Our Work</a>
-  </div>
-
-  <div class="hero-stats">
-    <div>
-      <div class="stat-val">15+</div>
-      <div class="stat-label">Projects Delivered</div>
-    </div>
-    <div>
-      <div class="stat-val">100%</div>
-      <div class="stat-label">Client Satisfaction</div>
-    </div>
-    <div>
-      <div class="stat-val">3x</div>
-      <div class="stat-label">Avg. Lead Increase</div>
-    </div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="marquee-dot"></span>Web Design</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>AI Automation</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Voice Agents</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>SEO Optimization</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Chatbots</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Lead Generation</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Scheduling AI</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Landing Pages</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Web Design</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>AI Automation</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Voice Agents</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>SEO Optimization</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Chatbots</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Lead Generation</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Scheduling AI</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Landing Pages</span>
-  </div>
-</div>
-
-<!-- SERVICES PREVIEW -->
-<section>
-  <div class="section-label">What We Do</div>
-  <h2 class="section-title">Services Built for<br><span class="gradient-text2">Modern Businesses</span></h2>
-  <p class="section-sub">We combine cutting-edge web design with AI automation to give your business a serious competitive edge.</p>
-
-  <div class="services-grid">
-    <div class="card">
-      <div class="card-top-bar"></div>
-      <div class="service-icon icon-cyan">🌐</div>
-      <div class="service-title">Custom Website Design</div>
-      <p class="service-desc">Hand-crafted, pixel-perfect websites that convert visitors into customers. Built fast and uniquely yours.</p>
-    </div>
-    <div class="card">
-      <div class="card-top-bar"></div>
-      <div class="service-icon icon-teal">🤖</div>
-      <div class="service-title">AI Voice Agents</div>
-      <p class="service-desc">Never miss a call again. Our AI agents handle inquiries and book appointments 24/7 automatically.</p>
-    </div>
-    <div class="card">
-      <div class="card-top-bar"></div>
-      <div class="service-icon icon-green">📅</div>
-      <div class="service-title">Scheduling Automation</div>
-      <p class="service-desc">AI-powered booking systems that sync with your calendar — zero back-and-forth needed.</p>
-    </div>
-    <div class="card">
-      <div class="card-top-bar"></div>
-      <div class="service-icon icon-teal">💬</div>
-      <div class="service-title">AI Chatbots</div>
-      <p class="service-desc">Smart website chat widgets that capture leads and guide visitors even while you sleep.</p>
-    </div>
-    <div class="card">
-      <div class="card-top-bar"></div>
-      <div class="service-icon icon-cyan">⚡</div>
-      <div class="service-title">Workflow Automation</div>
-      <p class="service-desc">Connect your tools and automate repetitive tasks. Save hours every week on admin work.</p>
-    </div>
-    <div class="card">
-      <div class="card-top-bar"></div>
-      <div class="service-icon icon-teal">📈</div>
-      <div class="service-title">SEO & Performance</div>
-      <p class="service-desc">Get found on Google. We optimize every site for speed, search rankings, and conversion.</p>
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo">INFERIS<span>.</span></div>
+      <div class="preloader__bar"><span id="preloaderBar"></span></div>
+      <div class="preloader__count"><span id="preloaderCount">0</span>%</div>
     </div>
   </div>
 
-  <div style="text-align:center; margin-top:2.5rem;">
-    <a href="services.html" class="btn-outline">View All Services →</a>
+  <!-- ============ CUSTOM CURSOR ============ -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ============ BACKGROUND GRID / GLOW ============ -->
+  <div class="bg-fx" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow--1"></div>
+    <div class="bg-glow bg-glow--2"></div>
+    <div class="bg-noise"></div>
   </div>
-</section>
 
-<!-- PROCESS -->
-<section class="process-section">
-  <div class="section-label">How It Works</div>
-  <h2 class="section-title">Simple <span class="gradient-text">4-Step</span> Process</h2>
-  <p class="section-sub">From first call to launch day — streamlined and stress-free.</p>
-
-  <div class="process-grid">
-    <div class="process-step">
-      <div class="step-num">01</div>
-      <div class="step-title">Discovery Call</div>
-      <p class="step-desc">We learn your business, goals, and vision in a free 30-minute strategy session.</p>
-    </div>
-    <div class="process-step">
-      <div class="step-num">02</div>
-      <div class="step-title">Design & Plan</div>
-      <p class="step-desc">We craft a tailored proposal with design mockups and a clear project roadmap.</p>
-    </div>
-    <div class="process-step">
-      <div class="step-num">03</div>
-      <div class="step-title">Build & Integrate</div>
-      <p class="step-desc">We build your site and plug in all AI automations with regular progress updates.</p>
-    </div>
-    <div class="process-step">
-      <div class="step-num">04</div>
-      <div class="step-title">Launch & Grow</div>
-      <p class="step-desc">We go live and stay on for support, optimizations, and continued growth.</p>
-    </div>
-  </div>
-</section>
-
-<!-- WORK PREVIEW -->
-<section>
-  <div class="section-label">Portfolio</div>
-  <h2 class="section-title">Work That <span class="gradient-text2">Speaks</span></h2>
-  <p class="section-sub">A growing collection of sites and AI solutions we've built for real businesses.</p>
-
-  <div class="portfolio-grid">
-    <a href="work.html" class="portfolio-card">
-      <div class="portfolio-thumb p1">
-        <span>🏢</span>
-        <div class="portfolio-label">Enterprise IT</div>
-      </div>
-      <div class="portfolio-info">
-        <div class="portfolio-title">NVision IT — Full Redesign</div>
-        <div class="portfolio-sub">Oracle Gold Partner · Web Redesign · V3 Design System</div>
-      </div>
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__brand" data-cursor="hover">
+      <span class="nav__mark"></span>
+      INFERIS<span class="nav__brand-dot">.</span>TECH
     </a>
-    <a href="work.html" class="portfolio-card">
-      <div class="portfolio-thumb p2">
-        <span>🤖</span>
-        <div class="portfolio-label">AI Automation</div>
-      </div>
-      <div class="portfolio-info">
-        <div class="portfolio-title">AI Scheduling System</div>
-        <div class="portfolio-sub">24/7 Booking Automation · Calendar Integration</div>
-      </div>
+    <nav class="nav__links" id="navLinks">
+      <a href="services.html" data-cursor="hover">Services</a>
+      <a href="work.html" data-cursor="hover">Work</a>
+      <a href="process.html" data-cursor="hover">Process</a>
+      <a href="about.html" data-cursor="hover">About</a>
+      <a href="contact.html" class="nav__menu-cta" data-cursor="hover">Book a Call</a>
+    </nav>
+    <a href="contact.html" class="btn btn--nav magnetic" data-cursor="hover">
+      <span>Book a Call</span>
     </a>
-    <a href="work.html" class="portfolio-card">
-      <div class="portfolio-thumb p3">
-        <span>🛡️</span>
-        <div class="portfolio-label">Financial Services</div>
-      </div>
-      <div class="portfolio-info">
-        <div class="portfolio-title">Secure Our Families</div>
-        <div class="portfolio-sub">Brand Identity · Visiting Card · Digital Presence</div>
-      </div>
-    </a>
-    <a href="work.html" class="portfolio-card">
-      <div class="portfolio-thumb p4">
-        <span>💬</span>
-        <div class="portfolio-label">AI Chatbot</div>
-      </div>
-      <div class="portfolio-info">
-        <div class="portfolio-title">Lead Capture Bot</div>
-        <div class="portfolio-sub">Custom AI Chatbot · CRM Integration · 24/7 Support</div>
-      </div>
-    </a>
-  </div>
-</section>
+    <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span></button>
+  </header>
 
-<!-- TESTIMONIALS -->
-<section style="background: var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-  <div class="section-label">Testimonials</div>
-  <h2 class="section-title">What Clients <span class="gradient-text">Say</span></h2>
+  <main id="top">
 
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Inferis Tech transformed our outdated website into something we're genuinely proud of. The AI chatbot alone has doubled our lead captures."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar av1">RK</div>
-        <div>
-          <div class="author-name">Raj Kumar</div>
-          <div class="author-role">CEO, NVision IT</div>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <canvas id="hero3d" class="hero__canvas"></canvas>
+      <div class="hero__content">
+        <div class="hero__badge reveal" data-cursor="hover">
+          <span class="hero__badge-dot"></span>
+          AI-Powered Digital Agency
+        </div>
+        <h1 class="hero__title">
+          <span class="line"><span>We build smarter</span></span>
+          <span class="line"><span>digital <em>experiences</em></span></span>
+        </h1>
+        <p class="hero__sub reveal">
+          Premium websites and AI automation for businesses ready to grow.
+          We turn a single idea into a living, revenue-driving experience.
+        </p>
+        <div class="hero__actions reveal">
+          <a href="contact.html" class="btn btn--primary magnetic" data-cursor="hover">
+            <span>Start your project</span>
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="work.html" class="btn btn--ghost magnetic" data-cursor="hover">
+            <span>See our work</span>
+          </a>
+        </div>
+        <div class="hero__stats reveal">
+          <div class="stat"><b data-count="15" data-suffix="+">0</b><small>Projects delivered</small></div>
+          <div class="stat"><b data-count="100" data-suffix="%">0</b><small>Client satisfaction</small></div>
+          <div class="stat"><b data-count="3" data-suffix="x">0</b><small>Avg. lead increase</small></div>
         </div>
       </div>
+      <div class="hero__scroll">
+        <span>Scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Websites</span><i>✦</i><span>AI Voice Agents</span><i>✦</i><span>Automation</span><i>✦</i><span>Chatbots</span><i>✦</i><span>SEO</span><i>✦</i><span>Branding</span><i>✦</i>
+        <span>Websites</span><i>✦</i><span>AI Voice Agents</span><i>✦</i><span>Automation</span><i>✦</i><span>Chatbots</span><i>✦</i><span>SEO</span><i>✦</i><span>Branding</span><i>✦</i>
+      </div>
     </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"The scheduling automation saved us hours every week. Our clients love how easy it is to book now. Highly recommend."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar av2">SM</div>
-        <div>
-          <div class="author-name">Sarah Mitchell</div>
-          <div class="author-role">Owner, Local Med Spa</div>
+
+    <!-- ============ SIGNATURE SCROLL SCENE ============ -->
+    <section class="scene" id="scene">
+      <div class="scene__sticky">
+        <canvas id="sceneCanvas" class="scene__canvas"></canvas>
+        <div class="scene__copy">
+          <div class="scene__step">
+            <span class="scene__kicker">01 — The Idea</span>
+            <h2>It starts as a thought.</h2>
+            <p>Every great product begins with a spark. You bring the vision.</p>
+          </div>
+          <div class="scene__step">
+            <span class="scene__kicker">02 — The Build</span>
+            <h2>We make it real.</h2>
+            <p>Watch raw ideas take shape — pixel by pixel, system by system.</p>
+          </div>
+          <div class="scene__step">
+            <span class="scene__kicker">03 — The Launch</span>
+            <h2>Anything is possible.</h2>
+            <p>From imagination to a living experience your customers can touch.</p>
+          </div>
+        </div>
+        <div class="scene__progress"><span id="sceneProgress"></span></div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="services section" id="services">
+      <div class="section__head">
+        <span class="kicker reveal">What we do</span>
+        <h2 class="section__title reveal">Services built for <em>modern</em> businesses</h2>
+        <p class="section__lead reveal">Everything you need to look world-class and run on autopilot — designed, built, and integrated by one team.</p>
+      </div>
+      <div class="bento">
+        <article class="card tilt card--lg" data-cursor="hover">
+          <div class="card__icon">🎨</div>
+          <h3>Custom Website Design</h3>
+          <p>Bespoke, lightning-fast sites engineered to convert. No templates — just pixel-perfect craft that feels like your brand.</p>
+          <span class="card__line"></span>
+        </article>
+        <article class="card tilt" data-cursor="hover">
+          <div class="card__icon">🎙️</div>
+          <h3>AI Voice Agents</h3>
+          <p>Human-sounding agents that answer, qualify, and book — 24/7.</p>
+          <span class="card__line"></span>
+        </article>
+        <article class="card tilt" data-cursor="hover">
+          <div class="card__icon">📅</div>
+          <h3>Scheduling Automation</h3>
+          <p>Let clients book themselves. Calendars, reminders, follow-ups — handled.</p>
+          <span class="card__line"></span>
+        </article>
+        <article class="card tilt" data-cursor="hover">
+          <div class="card__icon">💬</div>
+          <h3>AI Chatbots</h3>
+          <p>On-brand assistants that answer instantly and capture every lead.</p>
+          <span class="card__line"></span>
+        </article>
+        <article class="card tilt" data-cursor="hover">
+          <div class="card__icon">⚙️</div>
+          <h3>Workflow Automation</h3>
+          <p>Connect your tools and kill busywork with smart, reliable pipelines.</p>
+          <span class="card__line"></span>
+        </article>
+        <article class="card tilt card--wide" data-cursor="hover">
+          <div class="card__icon">🚀</div>
+          <h3>SEO &amp; Performance</h3>
+          <p>Engineered for Core Web Vitals and search — so the right people find you and stay.</p>
+          <span class="card__line"></span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section class="process section" id="process">
+      <div class="section__head">
+        <span class="kicker reveal">How it works</span>
+        <h2 class="section__title reveal">A simple <em>4-step</em> process</h2>
+      </div>
+      <div class="steps">
+        <div class="steps__line"><span id="stepsProgress"></span></div>
+        <div class="step reveal">
+          <div class="step__num">01</div>
+          <h3>Discovery Call</h3>
+          <p>We learn your goals, audience, and what success looks like for you.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step__num">02</div>
+          <h3>Design &amp; Plan</h3>
+          <p>We map the experience and design something you're proud to share.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step__num">03</div>
+          <h3>Build &amp; Integrate</h3>
+          <p>We engineer it fast — clean code, AI, and automation wired in.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step__num">04</div>
+          <h3>Launch &amp; Grow</h3>
+          <p>We ship, measure, and optimize so results compound over time.</p>
         </div>
       </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Fast, professional, and genuinely creative. Our new site looks 10x better than before and we're ranking on Google now."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar av3">JT</div>
-        <div>
-          <div class="author-name">James Torres</div>
-          <div class="author-role">Founder, Buildright Contractors</div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="work section" id="work">
+      <div class="section__head">
+        <span class="kicker reveal">Selected work</span>
+        <h2 class="section__title reveal">Work that <em>speaks</em></h2>
+      </div>
+      <div class="work__grid">
+        <a class="project reveal" href="#contact" data-cursor="view">
+          <div class="project__media" style="--c1:#22d3ee;--c2:#3b82f6"></div>
+          <div class="project__meta"><h3>Nvision IT</h3><span>Enterprise redesign</span></div>
+        </a>
+        <a class="project reveal" href="#contact" data-cursor="view">
+          <div class="project__media" style="--c1:#a855f7;--c2:#6366f1"></div>
+          <div class="project__meta"><h3>AI Scheduling System</h3><span>Automation</span></div>
+        </a>
+        <a class="project reveal" href="#contact" data-cursor="view">
+          <div class="project__media" style="--c1:#f472b6;--c2:#a855f7"></div>
+          <div class="project__meta"><h3>Secure Our Families</h3><span>Website + brand</span></div>
+        </a>
+        <a class="project reveal" href="#contact" data-cursor="view">
+          <div class="project__media" style="--c1:#34d399;--c2:#22d3ee"></div>
+          <div class="project__meta"><h3>Lead Capture Bot</h3><span>AI chatbot</span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="quotes section" id="about">
+      <div class="section__head">
+        <span class="kicker reveal">Why teams choose us</span>
+        <h2 class="section__title reveal">People don't just like it. <em>They beg for one.</em></h2>
+      </div>
+      <div class="quotes__grid">
+        <figure class="quote reveal">
+          <blockquote>"They redesigned our site and our leads tripled in two months. It finally looks like the company we actually are."</blockquote>
+          <figcaption><b>Operations Lead</b><span>Nvision IT</span></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <blockquote>"The AI scheduling agent books calls while we sleep. It paid for itself in the first week."</blockquote>
+          <figcaption><b>Founder</b><span>Service Business</span></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <blockquote>"Fast, clear, and genuinely creative. I've already recommended Inferis to three other owners."</blockquote>
+          <figcaption><b>Director</b><span>Secure Our Families</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta section" id="contact">
+      <div class="cta__inner reveal">
+        <h2>Ready to build something <em>extraordinary?</em></h2>
+        <p>Book a free 30-minute strategy call. We'll map exactly how to turn your idea into a result.</p>
+        <div class="cta__actions">
+          <a href="mailto:bhuvan.rongali024@gmail.com?subject=I%20want%20a%20website%20from%20Inferis" class="btn btn--primary btn--lg magnetic" data-cursor="hover">
+            <span>Book a free call</span>
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="services.html" class="btn btn--ghost btn--lg magnetic" data-cursor="hover"><span>Explore services</span></a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- CTA -->
-<div class="cta-strip">
-  <div class="cta-glow"></div>
-  <div class="section-label" style="justify-content:center;">Let's Work Together</div>
-  <h2>Ready to <span class="gradient-text">Elevate</span> Your Business?</h2>
-  <p>Book a free 30-minute strategy call. No pressure, no fluff — just a real conversation about what we can build together.</p>
-  <div class="btn-row">
-    <a href="contact.html" class="btn-primary">Book a Free Call →</a>
-    <a href="pricing.html" class="btn-outline">View Pricing</a>
-  </div>
-</div>
-
-<footer>
-  <a href="index.html" class="footer-logo">Inferis Tech</a>
-  <ul class="footer-links">
-    <li><a href="services.html">Services</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="pricing.html">Pricing</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <div class="footer-copy">© 2026 Inferis Tech. All rights reserved.</div>
-</footer>
-
-<script src="js/nav.js"></script>
-<script>
-function toggleNav() {
-  document.getElementById("hamburger").classList.toggle("open");
-  document.getElementById("nav-links").classList.toggle("open");
-}
-</script>
-<script>
-window.INFERIS_API_KEY = "YOUR_OPENAI_API_KEY_HERE";
-</script>
-
-<script>
-window.INFERIS_API_KEY = "YOUR_OPENAI_API_KEY_HERE";
-(function () {
-  const SYSTEM_PROMPT = `You are Aria, the AI assistant for Inferis Tech — a digital agency run by Bhuvan Rongali that builds premium websites and AI automation solutions for small and medium businesses.
-
-Your job is to help website visitors understand what Inferis Tech offers, answer their questions, and guide them toward booking a free strategy call.
-
-== ABOUT INFERIS TECH ==
-Inferis Tech is an AI-powered digital agency based in the Raleigh-Charlotte, NC area. We help small businesses compete with enterprise companies by giving them access to the same powerful technology — without the big price tag.
-Founder: Bhuvan Rongali — incoming Finance & Accounting student at UNC Charlotte (Belk College of Business). Experienced web developer and AI automation builder with real client work delivered.
-
-== SERVICES ==
-1. Custom Website Design - Hand-crafted, pixel-perfect websites built from scratch. Mobile-first, fast-loading, SEO-optimized. Built with HTML/CSS/JS or React. Delivered in 2-3 weeks.
-2. AI Voice Agents - AI phone agents that answer calls 24/7. Handle FAQs, qualify leads, book appointments automatically. Built with Bland.ai.
-3. Scheduling Automation - AI-powered booking systems synced to your calendar. Auto email/SMS reminders. Built with Cal.com + Zapier.
-4. AI Chatbots - Smart website chat widgets trained on your business. Capture leads, answer questions 24/7. Built with custom GPT integration.
-5. Workflow Automation - Connect your tools and automate repetitive tasks. Built with Zapier and Make.
-6. SEO & Performance - On-page SEO, Google Search Console setup, Core Web Vitals optimization.
-
-== PRICING ==
-Starter Plan — $500 one-time: Custom 5-page website, mobile responsive, basic SEO, contact form, 30-day support.
-Growth Plan — $1,200 one-time + $150/month (Most Popular): Everything in Starter + up to 10 pages, AI chatbot, scheduling automation, lead capture, advanced SEO, monthly maintenance.
-Pro Plan — $2,500 one-time + $400/month: Everything in Growth + unlimited pages, AI voice agent, full workflow automation, CRM setup, monthly strategy calls, priority support.
-Add-ons: Extra voice agent (+$200/mo), extra pages (+$75 each), multi-language (+$300), analytics dashboard (+$150/mo).
-
-== PORTFOLIO ==
-NVision IT — Full website redesign for an Oracle Gold Partner enterprise IT firm.
-Secure Our Families — Brand identity and digital presence for a legacy planning firm.
-AI Scheduling System — 24/7 booking automation for a local med spa.
-Lead Capture Chatbot — Custom AI chatbot with CRM integration for a contractor.
-AI Voice Agent — Inbound AI phone agent for a dental practice.
-
-== CONTACT ==
-Email: hello@inferistech.com. Book a free 30-minute strategy call at the contact page.
-
-== HOW TO RESPOND ==
-- Be friendly, direct, and helpful — no corporate fluff
-- Keep responses concise (2-4 sentences max unless they ask for detail)
-- If someone asks about pricing, give them the info and invite them to book a call
-- If someone is ready to start, direct them to hello@inferistech.com or the contact page
-- Never make up services, prices, or capabilities not listed above
-- Always end with a helpful next step or question`;
-
-  const style = document.createElement('style');
-  style.textContent = `
-    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
-    #inferis-chat-btn {
-      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
-      width: 56px; height: 56px; border-radius: 50%;
-      background: linear-gradient(135deg, #4ade80, #60a5fa);
-      border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 20px rgba(74,222,128,0.35); transition: transform 0.2s, box-shadow 0.2s; font-size: 22px;
-    }
-    #inferis-chat-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(74,222,128,0.45); }
-    #inferis-chat-btn .chat-icon { display: block; }
-    #inferis-chat-btn .close-icon { display: none; color: #1c1c1e; font-size: 18px; font-weight: 700; }
-    #inferis-chat-btn.open .chat-icon { display: none; }
-    #inferis-chat-btn.open .close-icon { display: block; }
-    #inferis-chat-window {
-      position: fixed; bottom: 92px; right: 24px; z-index: 9998;
-      width: 360px; height: 520px; background: #1c1c1e;
-      border: 1px solid rgba(74,222,128,0.15); border-radius: 20px;
-      display: flex; flex-direction: column; overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      transform: scale(0.92) translateY(12px); opacity: 0; pointer-events: none;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s;
-      font-family: 'DM Sans', sans-serif;
-    }
-    #inferis-chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
-    .ic-header { padding: 14px 16px; background: #242426; border-bottom: 1px solid rgba(74,222,128,0.1); display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .ic-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #4ade80, #60a5fa); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-    .ic-header-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: #f2f2f7; line-height: 1.2; }
-    .ic-header-status { font-size: 11px; color: rgba(210,220,210,0.5); display: flex; align-items: center; gap: 4px; }
-    .ic-status-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; animation: ic-pulse 2s infinite; }
-    @keyframes ic-pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-    .ic-powered { font-size: 10px; color: rgba(210,220,210,0.25); font-weight: 300; margin-left: auto; }
-    .ic-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth; }
-    .ic-messages::-webkit-scrollbar { width: 4px; }
-    .ic-messages::-webkit-scrollbar-thumb { background: rgba(74,222,128,0.2); border-radius: 4px; }
-    .ic-msg { max-width: 85%; padding: 10px 14px; border-radius: 16px; font-size: 13.5px; line-height: 1.55; animation: ic-fadein 0.2s ease; }
-    @keyframes ic-fadein { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-    .ic-msg.bot { background: #2c2c2e; color: #f2f2f7; border-radius: 16px 16px 16px 4px; align-self: flex-start; border: 1px solid rgba(74,222,128,0.08); }
-    .ic-msg.user { background: linear-gradient(135deg, #4ade80, #60a5fa); color: #1c1c1e; font-weight: 500; border-radius: 16px 16px 4px 16px; align-self: flex-end; }
-    .ic-typing { display: flex; gap: 4px; align-items: center; padding: 12px 14px; background: #2c2c2e; border-radius: 16px 16px 16px 4px; align-self: flex-start; border: 1px solid rgba(74,222,128,0.08); }
-    .ic-typing span { width: 6px; height: 6px; background: rgba(74,222,128,0.6); border-radius: 50%; animation: ic-bounce 1.2s infinite; }
-    .ic-typing span:nth-child(2){animation-delay:0.2s} .ic-typing span:nth-child(3){animation-delay:0.4s}
-    @keyframes ic-bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
-    .ic-suggestions { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 10px; flex-shrink: 0; }
-    .ic-suggestion { padding: 5px 11px; border-radius: 50px; border: 1px solid rgba(74,222,128,0.2); background: transparent; color: rgba(210,220,210,0.7); font-size: 12px; cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
-    .ic-suggestion:hover { border-color: rgba(74,222,128,0.5); color: #4ade80; background: rgba(74,222,128,0.06); }
-    .ic-input-row { padding: 12px 14px; background: #242426; border-top: 1px solid rgba(74,222,128,0.08); display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
-    .ic-input { flex: 1; background: #2c2c2e; border: 1px solid rgba(74,222,128,0.1); border-radius: 50px; padding: 9px 16px; color: #f2f2f7; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 300; outline: none; transition: border-color 0.2s; }
-    .ic-input::placeholder { color: rgba(210,220,210,0.3); }
-    .ic-input:focus { border-color: rgba(74,222,128,0.35); }
-    .ic-send { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #4ade80, #60a5fa); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.2s, transform 0.2s; flex-shrink: 0; }
-    .ic-send:hover { opacity: 0.85; transform: scale(1.05); }
-    .ic-send:disabled { opacity: 0.4; cursor: default; transform: none; }
-    .ic-send svg { width: 16px; height: 16px; fill: #1c1c1e; }
-    @media (max-width: 480px) {
-      #inferis-chat-window { width: calc(100vw - 24px); right: 12px; bottom: 84px; height: 70vh; }
-      #inferis-chat-btn { right: 16px; bottom: 16px; }
-    }
-  `;
-  document.head.appendChild(style);
-
-  const btn = document.createElement('button');
-  btn.id = 'inferis-chat-btn';
-  btn.setAttribute('aria-label', 'Open chat');
-  btn.innerHTML = '<span class="chat-icon">💬</span><span class="close-icon">✕</span>';
-
-  const win = document.createElement('div');
-  win.id = 'inferis-chat-window';
-  win.innerHTML = `
-    <div class="ic-header">
-      <div class="ic-avatar">🤖</div>
-      <div class="ic-header-info">
-        <div class="ic-header-name">Aria &middot; Inferis Tech</div>
-        <div class="ic-header-status"><span class="ic-status-dot"></span> Online now</div>
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="#top" class="nav__brand">INFERIS<span class="nav__brand-dot">.</span>TECH</a>
+          <p>We build smarter digital experiences — websites &amp; AI automation that turn ideas into reality.</p>
+        </div>
+        <nav class="footer__nav">
+          <a href="services.html" data-cursor="hover">Services</a>
+          <a href="work.html" data-cursor="hover">Work</a>
+          <a href="process.html" data-cursor="hover">Process</a>
+          <a href="about.html" data-cursor="hover">About</a>
+          <a href="contact.html" data-cursor="hover">Book a Call</a>
+        </nav>
       </div>
-      <div class="ic-powered">GPT-4o</div>
-    </div>
-    <div class="ic-messages" id="ic-messages"></div>
-    <div class="ic-suggestions" id="ic-suggestions">
-      <button class="ic-suggestion">What services do you offer?</button>
-      <button class="ic-suggestion">How much does it cost?</button>
-      <button class="ic-suggestion">How do I get started?</button>
-    </div>
-    <div class="ic-input-row">
-      <input class="ic-input" id="ic-input" type="text" placeholder="Ask me anything..." autocomplete="off" />
-      <button class="ic-send" id="ic-send" aria-label="Send">
-        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-      </button>
-    </div>
-  `;
+      <div class="footer__bottom">
+        <span>© 2026 Inferis Tech. All rights reserved.</span>
+        <span>Designed &amp; built in-house.</span>
+      </div>
+    </footer>
+  </main>
 
-  document.body.appendChild(btn);
-  document.body.appendChild(win);
-
-  const messages = [{ role: 'system', content: SYSTEM_PROMPT }];
-  let isOpen = false, isLoading = false, greeted = false;
-  const messagesEl = document.getElementById('ic-messages');
-  const inputEl = document.getElementById('ic-input');
-  const sendEl = document.getElementById('ic-send');
-  const suggestionsEl = document.getElementById('ic-suggestions');
-
-  btn.addEventListener('click', () => {
-    isOpen = !isOpen;
-    btn.classList.toggle('open', isOpen);
-    win.classList.toggle('open', isOpen);
-    if (isOpen && !greeted) {
-      greeted = true;
-      setTimeout(() => addMessage('bot', "Hey! 👋 I'm Aria, Inferis Tech's AI assistant. I can tell you about our services, pricing, and how we can help your business. What's on your mind?"), 300);
-    }
-    if (isOpen) setTimeout(() => inputEl.focus(), 300);
-  });
-
-  suggestionsEl.querySelectorAll('.ic-suggestion').forEach(s => {
-    s.addEventListener('click', () => {
-      inputEl.value = s.textContent;
-      suggestionsEl.style.display = 'none';
-      sendMessage();
-    });
-  });
-
-  sendEl.addEventListener('click', sendMessage);
-  inputEl.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) sendMessage(); });
-
-  function addMessage(role, text) {
-    const div = document.createElement('div');
-    div.className = 'ic-msg ' + role;
-    div.textContent = text;
-    messagesEl.appendChild(div);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-    return div;
-  }
-
-  function addTyping() {
-    const div = document.createElement('div');
-    div.className = 'ic-typing'; div.id = 'ic-typing';
-    div.innerHTML = '<span></span><span></span><span></span>';
-    messagesEl.appendChild(div);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-  }
-
-  function removeTyping() { const t = document.getElementById('ic-typing'); if (t) t.remove(); }
-
-  async function sendMessage() {
-    const text = inputEl.value.trim();
-    if (!text || isLoading) return;
-    const apiKey = window.INFERIS_API_KEY;
-    if (!apiKey || apiKey === 'YOUR_OPENAI_API_KEY_HERE') {
-      addMessage('bot', 'Chat is not configured yet. Please reach out to us at hello@inferistech.com!');
-      return;
-    }
-    suggestionsEl.style.display = 'none';
-    inputEl.value = '';
-    addMessage('user', text);
-    messages.push({ role: 'user', content: text });
-    isLoading = true; sendEl.disabled = true;
-    addTyping();
-    try {
-      const res = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey },
-        body: JSON.stringify({ model: 'gpt-4o-mini', messages: messages, max_tokens: 300, temperature: 0.7 })
-      });
-      const data = await res.json();
-      if (data.error) {
-        removeTyping();
-        const code = data.error.code || data.error.type || '';
-        let msg = "I'm having a little trouble right now. Reach out to us at hello@inferistech.com and we'll get back to you!";
-        if (code === 'insufficient_quota' || code === 'billing_hard_limit_reached')
-          msg = "I'm temporarily unavailable. You can reach us at hello@inferistech.com and we'll be happy to help!";
-        else if (code === 'rate_limit_exceeded')
-          msg = "I'm getting a lot of questions right now! Try again in a moment or email us at hello@inferistech.com.";
-        addMessage('bot', msg);
-        return;
-      }
-      const reply = data.choices[0].message.content;
-      messages.push({ role: 'assistant', content: reply });
-      removeTyping();
-      addMessage('bot', reply);
-    } catch (err) {
-      removeTyping();
-      addMessage('bot', "Something went wrong on my end. Feel free to reach out at hello@inferistech.com and we'll help you out!");
-    } finally {
-      isLoading = false; sendEl.disabled = false; inputEl.focus();
-    }
-  }
-})();
-
-</script>
+  <!-- ============ LIBS ============ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <!-- ============ APP ============ -->
+  <script src="hero3d.js"></script>
+  <script src="scene-home.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

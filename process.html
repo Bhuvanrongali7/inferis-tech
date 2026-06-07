@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work — Inferis Tech</title>
-  <meta name="description" content="Selected work from Inferis Tech — enterprise redesigns, AI scheduling systems, brand sites and lead-capture bots that move the numbers." />
+  <title>Process — Inferis Tech</title>
+  <meta name="description" content="Our simple 4-step process: Discovery, Design, Build, Launch. A clear journey from idea to a live, growing product." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -28,8 +28,8 @@
     <a href="index.html" class="nav__brand" data-cursor="hover"><span class="nav__mark"></span>INFERIS<span class="nav__brand-dot">.</span>TECH</a>
     <nav class="nav__links" id="navLinks">
       <a href="services.html" data-cursor="hover">Services</a>
-      <a href="work.html" class="active" data-cursor="hover">Work</a>
-      <a href="process.html" data-cursor="hover">Process</a>
+      <a href="work.html" data-cursor="hover">Work</a>
+      <a href="process.html" class="active" data-cursor="hover">Process</a>
       <a href="about.html" data-cursor="hover">About</a>
       <a href="contact.html" class="nav__menu-cta" data-cursor="hover">Book a Call</a>
     </nav>
@@ -39,78 +39,72 @@
 
   <main id="top">
     <section class="page-hero">
-      <span class="page-hero__eyebrow reveal">Selected work</span>
-      <h1 class="reveal">Proof, not <em>promises</em></h1>
-      <p class="reveal">Fly through a few of the things we've shipped. Every one was built to look the part — and move the numbers.</p>
+      <span class="page-hero__eyebrow reveal">How it works</span>
+      <h1 class="reveal">A clear path from <em>idea to live</em></h1>
+      <p class="reveal">No mystery, no chaos. Four steps, full visibility, and momentum the whole way. Scroll to take the journey.</p>
     </section>
 
-    <!-- SIGNATURE SCROLL SCENE: corridor flythrough -->
-    <section class="scene" id="scene">
+    <!-- SIGNATURE SCROLL SCENE: path journey -->
+    <section class="scene" id="scene" style="--scene-h:420vh">
       <div class="scene__sticky">
         <canvas id="sceneCanvas" class="scene__canvas"></canvas>
         <div class="scene__copy">
           <div class="scene__step">
-            <span class="scene__kicker">01 — Brands we've built</span>
-            <h2>Step inside the work.</h2>
-            <p>Each screen is a real project — websites, systems, and bots in the wild.</p>
+            <span class="scene__kicker">Step 01 — Discovery</span>
+            <h2>We learn your world.</h2>
+            <p>Goals, audience, and what winning actually looks like for you.</p>
           </div>
           <div class="scene__step">
-            <span class="scene__kicker">02 — Built to convert</span>
-            <h2>Beautiful and effective.</h2>
-            <p>Design that earns trust in seconds and turns visitors into customers.</p>
+            <span class="scene__kicker">Step 02 — Design</span>
+            <h2>We shape the experience.</h2>
+            <p>A plan and a design you're genuinely proud to put your name on.</p>
           </div>
           <div class="scene__step">
-            <span class="scene__kicker">03 — You're next</span>
-            <h2>Your project belongs here.</h2>
-            <p>Let's add your brand to the corridor.</p>
+            <span class="scene__kicker">Step 03 — Build</span>
+            <h2>We engineer it fast.</h2>
+            <p>Clean code, AI, and automation — wired in and tested.</p>
+          </div>
+          <div class="scene__step">
+            <span class="scene__kicker">Step 04 — Launch</span>
+            <h2>We ship &amp; grow.</h2>
+            <p>Go live, measure, optimize — results that compound over time.</p>
           </div>
         </div>
         <div class="scene__progress"><span id="sceneProgress"></span></div>
       </div>
     </section>
 
-    <!-- WORK GRID -->
-    <section class="work section" id="work">
+    <!-- STEP DETAIL -->
+    <section class="process section" id="process">
       <div class="section__head">
-        <span class="kicker reveal">Case highlights</span>
-        <h2 class="section__title reveal">Work that <em>speaks</em></h2>
+        <span class="kicker reveal">The 4 steps</span>
+        <h2 class="section__title reveal">Simple on the surface. <em>Rigorous</em> underneath.</h2>
       </div>
-      <div class="work__grid">
-        <a class="project reveal" href="contact.html" data-cursor="view">
-          <div class="project__media" style="--c1:#22d3ee;--c2:#3b82f6"></div>
-          <div class="project__meta"><h3>Nvision IT</h3><span>Enterprise redesign</span></div>
-        </a>
-        <a class="project reveal" href="contact.html" data-cursor="view">
-          <div class="project__media" style="--c1:#a855f7;--c2:#6366f1"></div>
-          <div class="project__meta"><h3>AI Scheduling System</h3><span>Automation</span></div>
-        </a>
-        <a class="project reveal" href="contact.html" data-cursor="view">
-          <div class="project__media" style="--c1:#f472b6;--c2:#a855f7"></div>
-          <div class="project__meta"><h3>Secure Our Families</h3><span>Website + brand</span></div>
-        </a>
-        <a class="project reveal" href="contact.html" data-cursor="view">
-          <div class="project__media" style="--c1:#34d399;--c2:#22d3ee"></div>
-          <div class="project__meta"><h3>Lead Capture Bot</h3><span>AI chatbot</span></div>
-        </a>
+      <div class="steps">
+        <div class="steps__line"><span id="stepsProgress"></span></div>
+        <div class="step reveal"><div class="step__num">01</div><h3>Discovery Call</h3><p>We learn your goals, audience, and what success looks like for you.</p></div>
+        <div class="step reveal"><div class="step__num">02</div><h3>Design &amp; Plan</h3><p>We map the experience and design something you're proud to share.</p></div>
+        <div class="step reveal"><div class="step__num">03</div><h3>Build &amp; Integrate</h3><p>We engineer it fast — clean code, AI, and automation wired in.</p></div>
+        <div class="step reveal"><div class="step__num">04</div><h3>Launch &amp; Grow</h3><p>We ship, measure, and optimize so results compound over time.</p></div>
       </div>
     </section>
 
     <section class="cta section">
       <div class="cta__inner reveal">
-        <h2>Want results like these? <em>Let's talk.</em></h2>
-        <p>Tell us about your business and we'll show you exactly what we'd build.</p>
+        <h2>Ready to start at <em>step one?</em></h2>
+        <p>Book a free discovery call and we'll begin the journey together.</p>
         <div class="cta__actions">
-          <a href="contact.html" class="btn btn--primary btn--lg magnetic" data-cursor="hover"><span>Start your project</span>
+          <a href="contact.html" class="btn btn--primary btn--lg magnetic" data-cursor="hover"><span>Book discovery call</span>
             <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="services.html" class="btn btn--ghost btn--lg magnetic" data-cursor="hover"><span>Explore services</span></a>
+          <a href="about.html" class="btn btn--ghost btn--lg magnetic" data-cursor="hover"><span>Meet the team</span></a>
         </div>
       </div>
     </section>
 
     <nav class="pagenav">
-      <a href="services.html" data-cursor="hover"><small>← Previous</small><b>Services</b></a>
-      <a href="process.html" class="next" data-cursor="hover"><small>Next →</small><b>Process</b></a>
+      <a href="work.html" data-cursor="hover"><small>← Previous</small><b>Work</b></a>
+      <a href="about.html" class="next" data-cursor="hover"><small>Next →</small><b>About</b></a>
     </nav>
 
     <footer class="footer">
@@ -135,7 +129,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="scene-work.js"></script>
+  <script src="scene-process.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
